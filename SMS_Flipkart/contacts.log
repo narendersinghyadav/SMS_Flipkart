@@ -1,0 +1,11 @@
+15:46:21,283 ERROR UserClient,main:18 - enter username and password
+15:47:49,817 ERROR UserClient,main:18 - enter username and password
+15:47:58,990 ERROR UserDaoImpl,main:40 - Table 'flipkartdb.login' doesn't exist
+15:48:58,823 ERROR UserClient,main:18 - enter username and password
+15:50:03,704 ERROR UserClient,main:18 - enter username and password
+15:50:11,110 ERROR CheckIdentity,main:23 - admin is logged in
+16:07:02,478 ERROR UserClient,main:18 - enter username and password
+16:07:15,699 ERROR CheckIdentity,main:23 - admin is logged in
+16:07:43,135 ERROR UserClient,main:18 - enter username and password
+16:07:53,400 ERROR CheckIdentity,main:23 - admin is logged in
+16:08:36,927 ERROR CheckIdentity,main:23 - admin is logged in
