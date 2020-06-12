@@ -4,33 +4,42 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
 import com.flipkart.constant.SQLConstantQueries;
+import com.flipkart.model.Professor;
+import com.flipkart.model.Student;
 import com.flipkart.model.User;
 import com.flipkart.utils.DBUtil;
 
-public class UserDaoImpl implements UserDao{
+public class ProfessorDaoImpl implements ProfessorDao{
+
+	
 	private static Logger logger=Logger.getLogger(UserDaoImpl.class);
 	public static Connection connection=null;
+	
 	@Override
-	public User getPasswordByUsername(String username) {
+	public List<Integer> listEnrolledStudents(int courseid) {
+		// TODO Auto-generated method stub
 		connection=DBUtil.getConnection();
-		User user=null;
-		
+		List<Integer> array=new ArrayList<Integer> ();
 		//customer list
 		try {
 			//list customer statement
-			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.LIST_BY_USERNAME);
-			statement.setString(1, username);
+			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.LIST_STUDENTS);
+			statement.setInt(1, courseid);
+			statement.setInt(2, courseid);
+			statement.setInt(3, courseid);
+			statement.setInt(4, courseid);
 			ResultSet resultset=statement.executeQuery();
 			
 			 while(resultset.next()){
 		         //Retrieve by column name
-		         String password=resultset.getString("password");
-		         int role=resultset.getInt("role");
-		         user=new User(username,password,role);
+		        int studentid=resultset.getInt("studentid");
+		         array.add(studentid);
 		      }
 			 
 			 resultset.close();
@@ -39,20 +48,21 @@ public class UserDaoImpl implements UserDao{
 	}catch(SQLException e) {
 		logger.error(e.getMessage());
 	}
-		return user;
+		return array;
+	}
 
-}
 	@Override
-	public boolean addUser(User user) {
+	public boolean addGrade(int grade, Student student,int courseid) {
+		// TODO Auto-generated method stub
 		connection=DBUtil.getConnection();
 		
 		//customer list
 		try {
 			//list customer statement
-			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.ADD_USER);
-			statement.setString(1,user.getUsername());
-			statement.setString(2,user.getPassword());
-			statement.setInt(3,user.getRole());
+			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.ADD_GRADE);
+			statement.setInt(1, student.getStudentId());
+			statement.setInt(2, courseid);
+			statement.setInt(3, grade);
 			
 			int row=statement.executeUpdate();
 			if(row!=0) {
@@ -65,15 +75,18 @@ public class UserDaoImpl implements UserDao{
 	}
 		return false;
 	}
+
 	@Override
-	public boolean deleteUser(User user) {
+	public boolean chooseCourse(Professor professor,int courseid) {
+		// TODO Auto-generated method stub
 		connection=DBUtil.getConnection();
 		
 		//customer list
 		try {
 			//list customer statement
-			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.DELETE_USER);
-			statement.setString(1,user.getUsername());
+			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.CHOOSE_COURSE_FOR_TEACHING);
+			statement.setInt(1,professor.getProfessorId());
+			statement.setInt(2, courseid);
 			
 			int row=statement.executeUpdate();
 			if(row!=0) {
@@ -84,7 +97,7 @@ public class UserDaoImpl implements UserDao{
 	}catch(SQLException e) {
 		logger.error(e.getMessage());
 	}
-	return false;
+		return false;
 	}
-	
+
 }

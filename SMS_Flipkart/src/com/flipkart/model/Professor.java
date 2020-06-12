@@ -1,16 +1,22 @@
 package com.flipkart.model;
 
-public class Professor {
-	public int professorId;
-	public String professorName;
-	public String professorAddress;
-	public String professorYear;
-	public String professorMobilenumber;
+public class Professor extends User{
+	private int employeeId;
+	private String professorName;
+	private String professorAddress;
+	private String professorMobilenumber;
+	private Professor(String username,String password,int employeeId,String professorName,String professorAddress,String professorMobilenumber) {
+		super(username,password);
+		this.employeeId=employeeId;
+		this.professorName=professorName;
+		this.professorAddress=professorAddress;
+		this.professorMobilenumber=professorMobilenumber;
+	}
 	public int getProfessorId() {
-		return professorId;
+		return employeeId;
 	}
 	public void setProfessorId(int professorId) {
-		this.professorId = professorId;
+		this.employeeId = professorId;
 	}
 	public String getProfessorName() {
 		return professorName;
@@ -23,12 +29,6 @@ public class Professor {
 	}
 	public void setProfessorAddress(String professorAddress) {
 		this.professorAddress = professorAddress;
-	}
-	public String getProfessorYear() {
-		return professorYear;
-	}
-	public void setProfessorYear(String professorYear) {
-		this.professorYear = professorYear;
 	}
 	public String getProfessorMobilenumber() {
 		return professorMobilenumber;

@@ -1,11 +1,10 @@
 package com.flipkart.dao;
 
-import java.util.List;
-
-import com.flipkart.model.Course;
 import com.flipkart.model.User;
 
 public interface UserDao {
+	public boolean addUser(User user);
+	public boolean deleteUser(User user);
 	public User getPasswordByUsername(String username);
-	public List<Course> getCatalog();
+	
 }

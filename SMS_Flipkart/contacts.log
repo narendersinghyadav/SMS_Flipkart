@@ -9,3 +9,22 @@
 16:07:43,135 ERROR UserClient,main:18 - enter username and password
 16:07:53,400 ERROR CheckIdentity,main:23 - admin is logged in
 16:08:36,927 ERROR CheckIdentity,main:23 - admin is logged in
+16:14:29,732  INFO UserClient,main:18 - enter username and password
+16:17:41,428  INFO UserClient,main:18 - enter username and password
+16:17:48,687  INFO CheckIdentity,main:23 - admin is logged in
+16:32:59,449  INFO UserClient,main:19 - enter username and password
+16:33:07,934  INFO UserClient,main:28 - admin is logged in
+16:34:17,424  INFO UserClient,main:19 - enter username and password
+16:34:23,643  INFO UserClient,main:31 - professor is logged in
+16:38:36,286  INFO UserClient,main:20 - enter username and password
+16:38:43,814  INFO UserClient,main:37 - studnet is logged in
+16:39:01,114  INFO UserClient,main:20 - enter username and password
+16:39:07,154  INFO UserClient,main:36 - studnet is logged in
+16:39:07,157  INFO CourseCatalog,main:16 - Course ID: 1 Course Namecse Course Schedule10-11 AM
+16:39:07,157  INFO CourseCatalog,main:16 - Course ID: 2 Course Nameee Course Schedule12-1 PM
+16:47:12,724  INFO UserClient,main:20 - enter username and password
+16:47:21,653  INFO UserClient,main:36 - studnet is logged in
+16:47:21,658  INFO CourseCatalog,main:16 - Course ID: 1 Course Name: cse Course Schedule: 10-11 AM Number of student :3
+16:47:21,658  INFO CourseCatalog,main:16 - Course ID: 2 Course Name: ee Course Schedule: 12-1 PM Number of student :4
+17:06:21,739  INFO UserClient,main:20 - enter username and password
+17:06:28,951  INFO UserClient,main:36 - studnet is logged in

@@ -1,16 +1,23 @@
 package com.flipkart.model;
 
-public class Admin {
-	public int adminId;
-	public String adminName;
-	public String adminAddress;
-	public String adminYear;
-	public String adminMobilenumber;
-	public int getAdminId() {
-		return adminId;
+public class Admin extends User{
+	private int employeeId;
+	private String adminName;
+	private String adminAddress;
+	private String adminMobilenumber;
+	
+	public Admin(String username,String password,int employeeId,String adminName,String adminAddress,String adminMobilenumber) {
+		super(username,password);
+		this.employeeId=employeeId;
+		this.adminName=adminName;
+		this.adminAddress=adminAddress;
+		this.adminMobilenumber=adminMobilenumber;
 	}
-	public void setAdminId(int adminId) {
-		this.adminId = adminId;
+	public int getemployeeId() {
+		return employeeId;
+	}
+	public void setemployeeId(int employeeId) {
+		this.employeeId = employeeId;
 	}
 	public String getAdminName() {
 		return adminName;
@@ -23,12 +30,6 @@ public class Admin {
 	}
 	public void setAdminAddress(String adminAddress) {
 		this.adminAddress = adminAddress;
-	}
-	public String getAdminYear() {
-		return adminYear;
-	}
-	public void setAdminYear(String adminYear) {
-		this.adminYear = adminYear;
 	}
 	public String getAdminMobilenumber() {
 		return adminMobilenumber;

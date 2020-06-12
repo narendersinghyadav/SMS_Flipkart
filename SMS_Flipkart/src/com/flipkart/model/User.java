@@ -1,9 +1,9 @@
 package com.flipkart.model;
 //user class
 public class User {
-	public String username;
-	public String password;
-	public int role;
+	private String username;
+	private String password;
+	private int role;
 	
 	public User(String username,String password,int role) {
 		this.username=username;
