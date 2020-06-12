@@ -1,12 +1,19 @@
 package com.flipkart.service;
 
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
+import com.flipkart.dao.AdminDao;
+import com.flipkart.dao.AdminDaoImpl;
 import com.flipkart.model.Admin;
 import com.flipkart.model.Course;
 import com.flipkart.model.Professor;
 import com.flipkart.model.Student;
 
 public class AdminOperation implements AdminInterface{
-
+	private Logger logger=Logger.getLogger(AdminOperation.class);
+	AdminDao admindao=new AdminDaoImpl();
 	@Override
 	public void addStudent(Student student) {
 		// TODO Auto-generated method stub
@@ -76,6 +83,14 @@ public class AdminOperation implements AdminInterface{
 	@Override
 	public void updateCourseInDb(Course course) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void listStudent() {
+		// TODO Auto-generated method stub\\\\\
+		List<Student> studentlist=admindao.fetchStudent();
+		studentlist.forEach(list->logger.info(list.getUsername()+" "+list.getStudentname()));
 		
 	}
 

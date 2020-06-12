@@ -60,7 +60,7 @@ public class ProfessorDaoImpl implements ProfessorDao{
 		try {
 			//list customer statement
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.ADD_GRADE);
-			statement.setInt(1, student.getStudentId());
+			statement.setString(1, student.getUsername());
 			statement.setInt(2, courseid);
 			statement.setInt(3, grade);
 			
@@ -85,7 +85,7 @@ public class ProfessorDaoImpl implements ProfessorDao{
 		try {
 			//list customer statement
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.CHOOSE_COURSE_FOR_TEACHING);
-			statement.setInt(1,professor.getProfessorId());
+			statement.setString(1, professor.getUsername());
 			statement.setInt(2, courseid);
 			
 			int row=statement.executeUpdate();

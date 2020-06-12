@@ -1,5 +1,7 @@
 package com.flipkart.dao;
 
+import java.util.List;
+
 import com.flipkart.model.Admin;
 import com.flipkart.model.Course;
 import com.flipkart.model.Professor;
@@ -16,9 +18,11 @@ public interface AdminDao {
 	
 	public boolean insertAdmin(Admin professor);
 	public boolean dropAdmin(Admin professor);
-	public boolean updateAdmin(Admin pprofessor);
+	public boolean updateAdmin(Admin professor);
 	
 	public boolean insertCourseToDb(Course course);
 	public boolean dropCourseFromDb(Course course);
 	public boolean updateCourseInDb(Course course);
+	
+	public List<Student> fetchStudent();
 }

@@ -2,7 +2,10 @@ package com.flipkart.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
@@ -31,7 +34,7 @@ public class AdminDaoImpl implements AdminDao{
 		
 			userdao.addUser(user);
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.ADD_STUDENT);
-			statement.setInt(1, student.getStudentId());
+			statement.setString(1, student.getUsername());
 			statement.setString(2, student.getStudentname());
 			statement.setString(3, student.getStudentaddress());
 			statement.setString(4, student.getStudentyear());
@@ -57,7 +60,7 @@ public class AdminDaoImpl implements AdminDao{
 		try {
 			userdao.deleteUser(user);
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.DELETE_STUDENT);
-			statement.setInt(1, student.getStudentId());
+			statement.setString(1, student.getUsername());
 			int row=statement.executeUpdate();
 			if(row!=0) {
 				return true;
@@ -81,7 +84,7 @@ public class AdminDaoImpl implements AdminDao{
 			//list customer statement
 			
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.UPDATE_STUDENT);
-			statement.setInt(5, student.getStudentId());
+			statement.setString(5, student.getUsername());
 			statement.setString(1, student.getStudentname());
 			statement.setString(2, student.getStudentaddress());
 			statement.setString(3, student.getStudentyear());
@@ -109,7 +112,7 @@ public class AdminDaoImpl implements AdminDao{
 			//list customer statement
 			userdao.addUser(user);
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.ADD_PROFESSOR);
-			statement.setInt(1, professor.getProfessorId());
+			statement.setString(1, professor.getUsername());
 			statement.setString(2, professor.getProfessorName());
 			statement.setString(3, professor.getProfessorAddress());
 			statement.setString(4,professor.getProfessorMobilenumber());
@@ -136,7 +139,7 @@ public class AdminDaoImpl implements AdminDao{
 			userdao.deleteUser(user);
 			//list customer statement
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.DELETE_PROFESSOR);
-			statement.setInt(1, professor.getProfessorId());
+			statement.setString(1, professor.getUsername());
 			int row=statement.executeUpdate();
 			if(row!=0) {
 				return true;
@@ -160,7 +163,7 @@ public class AdminDaoImpl implements AdminDao{
 			//list customer statement
 			
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.UPDATE_PROFESSOR);
-			statement.setInt(4, professor.getProfessorId());
+			statement.setString(4, professor.getUsername());
 			statement.setString(1, professor.getProfessorName());
 			statement.setString(2, professor.getProfessorAddress());
 			statement.setString(3, professor.getProfessorMobilenumber());
@@ -187,7 +190,7 @@ public class AdminDaoImpl implements AdminDao{
 			userdao.addUser(user);
 			//list customer statement
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.ADD_ADMIN);
-			statement.setInt(1, admin.getemployeeId());
+			statement.setString(1, admin.getUsername());
 			statement.setString(2, admin.getAdminName());
 			statement.setString(3, admin.getAdminAddress());
 			statement.setString(4,admin.getAdminMobilenumber());
@@ -213,7 +216,7 @@ public class AdminDaoImpl implements AdminDao{
 			//list customer statement
 			userdao.deleteUser(user);
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.DELETE_ADMIN);
-			statement.setInt(1, admin.getemployeeId());
+			statement.setString(1, admin.getUsername());
 			int row=statement.executeUpdate();
 			if(row!=0) {
 				return true;
@@ -236,7 +239,7 @@ public class AdminDaoImpl implements AdminDao{
 			//list customer statement
 			
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.UPDATE_ADMIN);
-			statement.setInt(4, admin.getemployeeId());
+			statement.setString(4, admin.getUsername());
 			statement.setString(1, admin.getAdminName());
 			statement.setString(2, admin.getAdminAddress());
 			statement.setString(3, admin.getAdminMobilenumber());
@@ -326,6 +329,32 @@ connection=DBUtil.getConnection();
 			}
 		return false;
 		
+	}
+
+	@Override
+	public List<Student> fetchStudent() {
+		// TODO Auto-generated method stub
+		connection=DBUtil.getConnection();
+		List<Student> studentlist=new ArrayList<Student>();
+		Student student=null;
+		try {
+			//list customer statement
+			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.LIST_STUDENT);
+			ResultSet resultset=statement.executeQuery();
+			
+			 while(resultset.next()){
+		         //Retrieve by column name
+				student=new Student(resultset.getString("username")," ",resultset.getString("name"),resultset.getString("address"),resultset.getString("year"),resultset.getString("mobilenumber"),resultset.getString("gender"));
+				studentlist.add(student);
+				}
+			 
+			 resultset.close();
+			 statement.close();
+			 
+	}catch(SQLException e) {
+		logger.error(e.getMessage());
+	}
+		return studentlist;
 	}
 
 }

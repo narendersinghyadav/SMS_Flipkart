@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 import org.apache.log4j.Logger;
 
@@ -13,22 +17,25 @@ import com.flipkart.utils.DBUtil;
 
 public class StudentDaoImpl implements StudentDao{
 
-	private static Logger logger=Logger.getLogger(UserDaoImpl.class);
+	private static Logger logger=Logger.getLogger(StudentDaoImpl.class);
 	public static Connection connection=null;
 	@Override
 	public boolean addCourse(Student student, int courseid1, int courseid2, int courseid3, int courseid4) {
 		connection=DBUtil.getConnection();
-	
+		LocalTime localtime=LocalTime.now();
+		LocalDate localdate=LocalDate.now();
+		LocalDateTime localdatetime=LocalDateTime.now();
+		
 		//customer list
 		try {
 			//list customer statement
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.ADD_COURSE_BY_STUDENT);
-			statement.setInt(1,student.getStudentId());
+			statement.setString(1,student.getUsername());
 			statement.setInt(2,courseid1);
 			statement.setInt(3,courseid2);
 			statement.setInt(4,courseid3);
 			statement.setInt(5,courseid4);
-			
+			statement.setString(6,localdate+"/"+localtime+"/"+localdatetime.getDayOfWeek());
 			int row=statement.executeUpdate();
 			if(row!=0) {
 				return true;
@@ -45,7 +52,9 @@ public class StudentDaoImpl implements StudentDao{
 	public boolean updateCourse(Student student,int courseid1,int courseid2,int courseid3,int courseid4) {
 		// TODO Auto-generated method stub
 		connection=DBUtil.getConnection();
-		
+		LocalTime localtime=LocalTime.now();
+		LocalDate localdate=LocalDate.now();
+		LocalDateTime localdatetime=LocalDateTime.now();
 		//customer list
 		try {
 			//list customer statement
@@ -55,7 +64,8 @@ public class StudentDaoImpl implements StudentDao{
 			statement.setInt(2,courseid2);
 			statement.setInt(3,courseid3);
 			statement.setInt(4,courseid4);
-			statement.setInt(5,student.getStudentId());
+			statement.setString(5,localdate+"/"+localtime+"/"+localdatetime.getDayOfWeek());
+			statement.setString(6,student.getUsername());
 			int row=statement.executeUpdate();
 			if(row==0) {
 				return false;
@@ -71,17 +81,15 @@ public class StudentDaoImpl implements StudentDao{
 	}
 
 	@Override
-	public boolean updateCourseSchedule(Student student,String course1schedule,String course2schedule,String course3schedule,String course4schedule) {
+	public boolean updateCourseSchedule(Student student,int courseid,String schedule) {
 		// TODO Auto-generated method stub
 		try {
 			//list customer statement
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.CHANGE_SCHEDULE_BY_STUDENT);
 			
-			statement.setString(1,course1schedule);
-			statement.setString(2,course2schedule);
-			statement.setString(3,course3schedule);
-			statement.setString(4,course4schedule);
-			statement.setInt(5,student.getStudentId());
+			statement.setString(1,schedule);
+			statement.setInt(3,courseid);
+			statement.setString(2,student.getUsername());
 			int row=statement.executeUpdate();
 			if(row==0) {
 				return false;
@@ -105,14 +113,17 @@ public class StudentDaoImpl implements StudentDao{
 			//list customer statement
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.LIST_GRADE);
 			
-			statement.setInt(1,student.getStudentId());
+			statement.setString(1,student.getUsername());
 			ResultSet resultset=statement.executeQuery();
-			while(resultset.next()) {
-				student.setCourse1grade(resultset.getInt("course1grade"));
-				student.setCourse2grade(resultset.getInt("course2grade"));
-				student.setCourse3grade(resultset.getInt("course3grade"));
-				student.setCourse4grade(resultset.getInt("course4grade"));
-			}
+			resultset.next();
+				student.setCourse1grade(resultset.getInt("coursegrade"));
+				resultset.next();
+				student.setCourse2grade(resultset.getInt("coursegrade"));
+				resultset.next();
+				student.setCourse3grade(resultset.getInt("coursegrade"));
+				resultset.next();
+				student.setCourse4grade(resultset.getInt("coursegrade"));
+			
 			 statement.close();
 			 
 	}catch(SQLException e) {
@@ -126,6 +137,34 @@ public class StudentDaoImpl implements StudentDao{
 	public void payFees(Student student) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Student getStudentInfo(String username,String password) {
+		// TODO Auto-generated method stub
+		connection=DBUtil.getConnection();
+		Student student=null;
+		//customer list
+		try {
+			//list customer statement
+			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.GET_STUDENT_DETAILS);
+			
+			statement.setString(1,username);
+			ResultSet resultset=statement.executeQuery();
+			resultset.next();
+			username=resultset.getString("username");
+			String name=resultset.getString("name");
+			String address=resultset.getString("address");
+			String year=resultset.getString("year");
+			String mobilenumber=resultset.getString("mobilenumber");
+			String gender=resultset.getString("gender");
+			 statement.close();
+			 student=new Student(username,password,name,address,year,mobilenumber,gender);
+			 
+	}catch(SQLException e) {
+		logger.error(e.getMessage());
+	}
+		return student;
 	}
 
 }

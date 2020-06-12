@@ -1,25 +1,33 @@
 package com.flipkart.model;
 //Student class
 public class Student extends User{
-	private int studentId;
+	
 	private String studentName;
 	private String studentAddress;
 	private String studentYear;
 	private String studentMobilenumber;
+	private String gender;
+	
 	private int course1grade;
 	private int course2grade;
 	private int course3grade;
 	private int course4grade;
 	
-	public Student(String username,String password,int studentId,String studentName,String studentAddress,String studentYear,String studentMobilenumber) {
+	public Student(String username,String password,String studentName,String studentAddress,String studentYear,String studentMobilenumber,String gender) {
 		super(username,password);
-		this.studentId=studentId;
 		this.studentName=studentName;
 		this.studentAddress=studentAddress;
 		this.studentYear=studentYear;
 		this.studentMobilenumber=studentMobilenumber;
+		this.gender=gender;
 	}
-	
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 	public int getCourse1grade() {
 		return course1grade;
 	}
@@ -45,12 +53,6 @@ public class Student extends User{
 		this.course4grade = course4grade;
 	}
 
-	public int getStudentId() {
-		return studentId;
-	}
-	public void setStudentId(int studentId) {
-		this.studentId = studentId;
-	}
 	public String getStudentname() {
 		return studentName;
 	}

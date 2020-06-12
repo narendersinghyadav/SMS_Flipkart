@@ -1,23 +1,15 @@
 package com.flipkart.model;
 
 public class Admin extends User{
-	private int employeeId;
 	private String adminName;
 	private String adminAddress;
 	private String adminMobilenumber;
 	
-	public Admin(String username,String password,int employeeId,String adminName,String adminAddress,String adminMobilenumber) {
+	public Admin(String username,String password,String adminName,String adminAddress,String adminMobilenumber) {
 		super(username,password);
-		this.employeeId=employeeId;
 		this.adminName=adminName;
 		this.adminAddress=adminAddress;
 		this.adminMobilenumber=adminMobilenumber;
-	}
-	public int getemployeeId() {
-		return employeeId;
-	}
-	public void setemployeeId(int employeeId) {
-		this.employeeId = employeeId;
 	}
 	public String getAdminName() {
 		return adminName;

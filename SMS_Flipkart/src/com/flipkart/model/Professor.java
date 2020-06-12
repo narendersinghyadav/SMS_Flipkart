@@ -1,22 +1,14 @@
 package com.flipkart.model;
 
 public class Professor extends User{
-	private int employeeId;
 	private String professorName;
 	private String professorAddress;
 	private String professorMobilenumber;
-	private Professor(String username,String password,int employeeId,String professorName,String professorAddress,String professorMobilenumber) {
+	private Professor(String username,String password,String professorName,String professorAddress,String professorMobilenumber) {
 		super(username,password);
-		this.employeeId=employeeId;
 		this.professorName=professorName;
 		this.professorAddress=professorAddress;
 		this.professorMobilenumber=professorMobilenumber;
-	}
-	public int getProfessorId() {
-		return employeeId;
-	}
-	public void setProfessorId(int professorId) {
-		this.employeeId = professorId;
 	}
 	public String getProfessorName() {
 		return professorName;
