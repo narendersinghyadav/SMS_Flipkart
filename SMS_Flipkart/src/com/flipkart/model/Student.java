@@ -21,6 +21,9 @@ public class Student extends User{
 		this.studentMobilenumber=studentMobilenumber;
 		this.gender=gender;
 	}
+	public Student(String username) {
+		super(username,"");
+	}
 	public String getGender() {
 		return gender;
 	}

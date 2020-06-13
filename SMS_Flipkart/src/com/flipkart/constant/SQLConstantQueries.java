@@ -11,10 +11,10 @@ public class SQLConstantQueries {
 	public static final String LIST_GRADE = "select coursegrade,courseid from grade where username=?";
 	
 	public static final String ADD_USER = "insert into userlogin values(?,?,?)";
-	public static final String ADD_STUDENT="insert into student values(?,?,?,?,?)";
+	public static final String ADD_STUDENT="insert into student values(?,?,?,?,?,?)";
 	public static final String DELETE_USER = "delete from userlogin where username=?";
 	public static final String DELETE_STUDENT = "delete from student where username=?";
-	public static final String UPDATE_STUDENT = "update student set name=?,address=?,year=?,mobilenumber=? where username=?";
+	public static final String UPDATE_STUDENT = "update student set name=?,address=?,year=?,mobilenumber=?,gender=? where username=?";
 	
 	public static final String ADD_PROFESSOR = "insert into professor values(?,?,?,?)";
 	public static final String DELETE_PROFESSOR = "delete from professor where username=?";

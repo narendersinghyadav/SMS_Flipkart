@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.flipkart.constant.RoleConstants;
 import com.flipkart.constant.SQLConstantQueries;
 import com.flipkart.model.Admin;
 import com.flipkart.model.Course;
@@ -27,7 +28,7 @@ public class AdminDaoImpl implements AdminDao{
 	public boolean insertStudent(Student student) {
 		// TODO Auto-generated method stub
 		connection=DBUtil.getConnection();
-		User user=new User(student.getUsername(),student.getPassword(),student.getRole());
+		User user=new User(student.getUsername(),student.getPassword(),RoleConstants.STUDENT);
 		//customer list
 		try {
 			//list customer statement
@@ -39,6 +40,7 @@ public class AdminDaoImpl implements AdminDao{
 			statement.setString(3, student.getStudentaddress());
 			statement.setString(4, student.getStudentyear());
 			statement.setString(5, student.getStudentmobilenumber());
+			statement.setString(6,student.getGender());
 			int row=statement.executeUpdate();
 			if(row!=0) {
 				return true;
@@ -84,11 +86,12 @@ public class AdminDaoImpl implements AdminDao{
 			//list customer statement
 			
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.UPDATE_STUDENT);
-			statement.setString(5, student.getUsername());
+			statement.setString(6, student.getUsername());
 			statement.setString(1, student.getStudentname());
 			statement.setString(2, student.getStudentaddress());
 			statement.setString(3, student.getStudentyear());
 			statement.setString(4, student.getStudentmobilenumber());
+			statement.setString(5,student.getGender());
 			int row=statement.executeUpdate();
 			if(row!=0) {
 				return true;
@@ -106,7 +109,7 @@ public class AdminDaoImpl implements AdminDao{
 	public boolean insertProfessor(Professor professor) {
 		// TODO Auto-generated method stub
 		connection=DBUtil.getConnection();
-		User user=new User(professor.getUsername(),professor.getPassword(),professor.getRole());
+		User user=new User(professor.getUsername(),professor.getPassword(),RoleConstants.PROFESSOR);
 		//customer list
 		try {
 			//list customer statement
@@ -184,7 +187,7 @@ public class AdminDaoImpl implements AdminDao{
 	public boolean insertAdmin(Admin admin) {
 		// TODO Auto-generated method stub
 		connection=DBUtil.getConnection();
-		User user=new User(admin.getUsername(),admin.getPassword(),admin.getRole());
+		User user=new User(admin.getUsername(),admin.getPassword(),RoleConstants.ADMIN);
 		//customer list
 		try {
 			userdao.addUser(user);
@@ -284,7 +287,7 @@ public class AdminDaoImpl implements AdminDao{
 	@Override
 	public boolean dropCourseFromDb(Course course) {
 		// TODO Auto-generated method stub
-connection=DBUtil.getConnection();
+		connection=DBUtil.getConnection();
 		
 		//customer list
 		try {

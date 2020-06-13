@@ -85,6 +85,7 @@ public class StudentClient {
 				viewGrade(student);
 				break;
 			case 4:
+				logger.info("Student logging out");
 				logger.info(LocalDateTime.now()+"/"+LocalDateTime.now().getDayOfWeek());
 				
 				break;

@@ -8,5 +8,5 @@ import com.flipkart.model.Student;
 public interface ProfessorDao {
 	public List<Integer> listEnrolledStudents(int courseid);
 	public boolean addGrade(int grade,Student student,int courseid);
-	public boolean chooseCourse(Professor professor,int courseid);
+	public boolean chooseCourse(String professor,int courseid);
 }

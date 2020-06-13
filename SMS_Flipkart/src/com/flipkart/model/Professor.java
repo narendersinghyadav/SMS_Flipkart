@@ -4,11 +4,14 @@ public class Professor extends User{
 	private String professorName;
 	private String professorAddress;
 	private String professorMobilenumber;
-	private Professor(String username,String password,String professorName,String professorAddress,String professorMobilenumber) {
+	public Professor(String username,String password,String professorName,String professorAddress,String professorMobilenumber) {
 		super(username,password);
 		this.professorName=professorName;
 		this.professorAddress=professorAddress;
 		this.professorMobilenumber=professorMobilenumber;
+	}
+	public Professor(String username) {
+		super(username,"");
 	}
 	public String getProfessorName() {
 		return professorName;

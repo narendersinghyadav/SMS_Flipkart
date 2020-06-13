@@ -17095,3 +17095,299 @@
 19:45:47,146  INFO UserClient,main:26 - enter username and password
 19:46:11,630  INFO UserClient,main:25 - Login portal
 19:46:11,634  INFO UserClient,main:26 - enter username and password
+19:50:45,714  INFO UserClient,main:25 - Login portal
+19:50:45,718  INFO UserClient,main:26 - enter username and password
+19:50:57,999  INFO UserClient,main:47 - studnet is logged in
+19:50:57,999  INFO UserClient,main:48 - 2020-06-12T19:50:56.660/FRIDAY
+19:50:58,002  INFO StudentClient,main:68 - Welecome to student login
+19:50:58,003  INFO StudentOperation,main:74 - Student details are fetched
+19:50:58,005  INFO StudentClient,main:17 - press 0 for view catalog
+19:50:58,005  INFO StudentClient,main:18 - press 1 for register course
+19:50:58,005  INFO StudentClient,main:19 - press 2 for change schedule
+19:50:58,006  INFO StudentClient,main:20 - press 3 for view grades
+19:50:58,006  INFO StudentClient,main:21 - press 4 for logout
+19:51:04,811  INFO StudentClient,main:88 - 2020-06-12T19:51:04.811/FRIDAY
+19:51:04,812  INFO UserClient,main:25 - Login portal
+19:51:04,812  INFO UserClient,main:26 - enter username and password
+19:51:50,557  INFO UserClient,main:25 - Login portal
+19:51:50,560  INFO UserClient,main:26 - enter username and password
+19:51:59,578  INFO UserClient,main:36 - admin is logged in
+19:51:59,579  INFO UserClient,main:37 - 2020-06-12T19:51:58.251/FRIDAY
+19:51:59,580  INFO AdminClient,main:13 - welcome to admin
+19:51:59,580  INFO AdminClient,main:14 - press 0 for adding student
+19:51:59,581  INFO AdminClient,main:15 - press 1 for adding professor
+19:51:59,581  INFO AdminClient,main:16 - press 2 for adding admin
+19:51:59,581  INFO AdminClient,main:17 - press 3 for update student
+19:51:59,581  INFO AdminClient,main:18 - press 4 for update professor
+19:51:59,582  INFO AdminClient,main:19 - press 5 for update admin
+19:51:59,582  INFO AdminClient,main:20 - press 6 for delete student
+19:51:59,583  INFO AdminClient,main:21 - press 7 for delete professor
+19:51:59,583  INFO AdminClient,main:22 - press 8 for delete admin
+19:51:59,583  INFO AdminClient,main:23 - press 9 to add course to catalog
+19:51:59,584  INFO AdminClient,main:24 - press 10 to update course in catalog
+19:51:59,584  INFO AdminClient,main:25 - press 11 to delete course from catalog
+19:51:59,584  INFO AdminClient,main:26 - press 12 to view student details
+19:51:59,584  INFO AdminClient,main:27 - press 13 to logout
+19:52:04,040  INFO AdminOperation,main:93 - syam syam
+19:52:04,040  INFO AdminOperation,main:93 - radha radha
+19:52:10,576  INFO AdminOperation,main:93 - syam syam
+19:52:10,578  INFO AdminOperation,main:93 - radha radha
+19:52:16,905  INFO UserClient,main:25 - Login portal
+19:52:16,906  INFO UserClient,main:26 - enter username and password
+19:52:25,780  INFO UserClient,main:47 - studnet is logged in
+19:52:25,780  INFO UserClient,main:48 - 2020-06-12T19:52:25.778/FRIDAY
+19:52:25,783  INFO StudentClient,main:68 - Welecome to student login
+19:52:25,784  INFO StudentOperation,main:74 - Student details are fetched
+19:52:25,785  INFO StudentClient,main:17 - press 0 for view catalog
+19:52:25,785  INFO StudentClient,main:18 - press 1 for register course
+19:52:25,786  INFO StudentClient,main:19 - press 2 for change schedule
+19:52:25,786  INFO StudentClient,main:20 - press 3 for view grades
+19:52:25,786  INFO StudentClient,main:21 - press 4 for logout
+19:52:27,644  INFO StudentClient,main:88 - 2020-06-12T19:52:27.639/FRIDAY
+19:52:27,644  INFO UserClient,main:25 - Login portal
+19:52:27,644  INFO UserClient,main:26 - enter username and password
+20:52:06,396  INFO UserClient,main:25 - Login portal
+20:52:06,398  INFO UserClient,main:26 - enter username and password
+20:52:21,598  INFO UserClient,main:36 - admin is logged in
+20:52:21,610  INFO UserClient,main:37 - 2020-06-12T20:52:16.893/FRIDAY
+20:52:21,621  INFO AdminClient,main:13 - welcome to admin
+20:52:21,621  INFO AdminClient,main:14 - press 0 for adding student
+20:52:21,621  INFO AdminClient,main:15 - press 1 for adding professor
+20:52:21,622  INFO AdminClient,main:16 - press 2 for adding admin
+20:52:21,622  INFO AdminClient,main:17 - press 3 for update student
+20:52:21,622  INFO AdminClient,main:18 - press 4 for update professor
+20:52:21,622  INFO AdminClient,main:19 - press 5 for update admin
+20:52:21,622  INFO AdminClient,main:20 - press 6 for delete student
+20:52:21,622  INFO AdminClient,main:21 - press 7 for delete professor
+20:52:21,622  INFO AdminClient,main:22 - press 8 for delete admin
+20:52:21,622  INFO AdminClient,main:23 - press 9 to add course to catalog
+20:52:21,622  INFO AdminClient,main:24 - press 10 to update course in catalog
+20:52:21,623  INFO AdminClient,main:25 - press 11 to delete course from catalog
+20:52:21,623  INFO AdminClient,main:26 - press 12 to view student details
+20:52:21,623  INFO AdminClient,main:27 - press 13 to logout
+20:52:23,773  INFO AdminOperation,main:96 - username    name    address  year   mobilenumber
+21:32:58,844  INFO UserClient,main:25 - Login portal
+21:32:58,908  INFO UserClient,main:26 - enter username and password
+21:33:12,132  INFO UserClient,main:36 - admin is logged in
+21:33:12,144  INFO UserClient,main:37 - 2020-06-12T21:33:07.882/FRIDAY
+21:33:12,155  INFO AdminClient,main:13 - welcome to admin
+21:33:12,155  INFO AdminClient,main:14 - press 0 for adding student
+21:33:12,155  INFO AdminClient,main:15 - press 1 for adding professor
+21:33:12,156  INFO AdminClient,main:16 - press 2 for adding admin
+21:33:12,156  INFO AdminClient,main:17 - press 3 for update student
+21:33:12,156  INFO AdminClient,main:18 - press 4 for update professor
+21:33:12,156  INFO AdminClient,main:19 - press 5 for update admin
+21:33:12,156  INFO AdminClient,main:20 - press 6 for delete student
+21:33:12,156  INFO AdminClient,main:21 - press 7 for delete professor
+21:33:12,157  INFO AdminClient,main:22 - press 8 for delete admin
+21:33:12,157  INFO AdminClient,main:23 - press 9 to add course to catalog
+21:33:12,157  INFO AdminClient,main:24 - press 10 to update course in catalog
+21:33:12,157  INFO AdminClient,main:25 - press 11 to delete course from catalog
+21:33:12,157  INFO AdminClient,main:26 - press 12 to view student details
+21:33:12,157  INFO AdminClient,main:27 - press 13 to logout
+21:33:16,853  INFO AdminOperation,main:96 - username    name    address  year   mobilenumber
+21:33:16,884  INFO AdminOperation,main:100 - radha Ms. radha delhi 2019 909009090
+21:33:16,887  INFO AdminOperation,main:105 - syam Mr. syam delhi 2020 909909009
+21:33:50,876  INFO AdminOperation,main:96 - username    name    address  year   mobilenumber
+21:33:50,876  INFO AdminOperation,main:100 - radha Ms. radha delhi 2019 909009090
+21:33:50,876  INFO AdminOperation,main:105 - syam Mr. syam delhi 2020 909909009
+21:37:49,875  INFO UserClient,main:25 - Login portal
+21:37:49,876  INFO UserClient,main:26 - enter username and password
+21:47:22,691  INFO UserClient,main:25 - Login portal
+21:47:22,693  INFO UserClient,main:26 - enter username and password
+21:47:30,843  INFO UserClient,main:36 - admin is logged in
+21:47:30,844  INFO UserClient,main:37 - 2020-06-12T21:47:29.629/FRIDAY
+21:47:30,846  INFO AdminClient,main:15 - welcome to admin
+21:47:30,846  INFO AdminClient,main:16 - press 0 for adding student
+21:47:30,846  INFO AdminClient,main:17 - press 1 for adding professor
+21:47:30,846  INFO AdminClient,main:18 - press 2 for adding admin
+21:47:30,846  INFO AdminClient,main:19 - press 3 for update student
+21:47:30,847  INFO AdminClient,main:20 - press 4 for update professor
+21:47:30,847  INFO AdminClient,main:21 - press 5 for update admin
+21:47:30,847  INFO AdminClient,main:22 - press 6 for delete student
+21:47:30,847  INFO AdminClient,main:23 - press 7 for delete professor
+21:47:30,847  INFO AdminClient,main:24 - press 8 for delete admin
+21:47:30,847  INFO AdminClient,main:25 - press 9 to add course to catalog
+21:47:30,847  INFO AdminClient,main:26 - press 10 to update course in catalog
+21:47:30,847  INFO AdminClient,main:27 - press 11 to delete course from catalog
+21:47:30,847  INFO AdminClient,main:28 - press 12 to view student details
+21:47:30,848  INFO AdminClient,main:29 - press 13 to logout
+21:47:59,840  INFO AdminClient,main:37 - adding user
+21:47:59,840  INFO AdminClient,main:38 - enter username for student
+21:48:22,495  INFO AdminClient,main:40 - enter password for student
+21:48:28,741  INFO AdminClient,main:42 - enter name of student
+21:48:32,873  INFO AdminClient,main:44 - enter address of student
+21:48:37,874  INFO AdminClient,main:46 - enter year of student
+21:48:41,672  INFO AdminClient,main:48 - enter mobilenumber of student
+21:48:47,703  INFO AdminClient,main:50 - enter gender of student
+21:48:54,533  INFO AdminOperation,main:96 - username    name    address  year   mobilenumber
+21:48:54,536  INFO AdminOperation,main:100 - radha Ms. radha delhi 2019 909009090
+21:48:54,539  INFO AdminOperation,main:105 - syam Mr. syam delhi 2020 909909009
+21:54:24,231  INFO UserClient,main:25 - Login portal
+21:54:24,234  INFO UserClient,main:26 - enter username and password
+21:54:33,167  INFO UserClient,main:36 - admin is logged in
+21:54:33,167  INFO UserClient,main:37 - 2020-06-12T21:54:32.003/FRIDAY
+21:54:33,169  INFO AdminClient,main:15 - welcome to admin
+21:54:33,170  INFO AdminClient,main:16 - press 0 for adding student
+21:54:33,170  INFO AdminClient,main:17 - press 1 for adding professor
+21:54:33,170  INFO AdminClient,main:18 - press 2 for adding admin
+21:54:33,170  INFO AdminClient,main:19 - press 3 for update student
+21:54:33,170  INFO AdminClient,main:20 - press 4 for update professor
+21:54:33,170  INFO AdminClient,main:21 - press 5 for update admin
+21:54:33,171  INFO AdminClient,main:22 - press 6 for delete student
+21:54:33,171  INFO AdminClient,main:23 - press 7 for delete professor
+21:54:33,171  INFO AdminClient,main:24 - press 8 for delete admin
+21:54:33,171  INFO AdminClient,main:25 - press 9 to add course to catalog
+21:54:33,171  INFO AdminClient,main:26 - press 10 to update course in catalog
+21:54:33,171  INFO AdminClient,main:27 - press 11 to delete course from catalog
+21:54:33,171  INFO AdminClient,main:28 - press 12 to view student details
+21:54:33,172  INFO AdminClient,main:29 - press 13 to logout
+21:54:45,811  INFO AdminClient,main:37 - adding user
+21:54:45,812  INFO AdminClient,main:38 - enter username for student
+21:55:00,521  INFO AdminClient,main:40 - enter password for student
+21:55:04,572  INFO AdminClient,main:42 - enter name of student
+21:55:07,723  INFO AdminClient,main:44 - enter address of student
+21:55:10,536  INFO AdminClient,main:46 - enter year of student
+21:55:13,916  INFO AdminClient,main:48 - enter mobilenumber of student
+21:55:17,705  INFO AdminClient,main:50 - enter gender of student
+21:55:22,092  INFO AdminOperation,main:24 - ram@123 added successfully
+21:55:22,098  INFO AdminOperation,main:101 - username    name    address  year   mobilenumber
+21:55:22,103  INFO AdminOperation,main:105 - radha Ms. radha delhi 2019 909009090
+21:55:22,107  INFO AdminOperation,main:110 - syam Mr. syam delhi 2020 909909009
+21:55:22,108  INFO AdminOperation,main:110 - ram@123 Mr. ram india 2020 90909090
+22:07:39,851  INFO UserClient,main:26 - Login portal
+22:07:39,853  INFO UserClient,main:27 - enter username and password
+22:07:48,497  INFO UserClient,main:37 - admin is logged in
+22:07:48,498  INFO UserClient,main:38 - 2020-06-12T22:07:47.507/FRIDAY
+22:07:48,500  INFO AdminClient,main:15 - welcome to admin
+22:07:48,500  INFO AdminClient,main:16 - press 0 for adding student
+22:07:48,500  INFO AdminClient,main:17 - press 1 for adding professor
+22:07:48,500  INFO AdminClient,main:18 - press 2 for adding admin
+22:07:48,500  INFO AdminClient,main:19 - press 3 for update student
+22:07:48,500  INFO AdminClient,main:20 - press 4 for update professor
+22:07:48,500  INFO AdminClient,main:21 - press 5 for update admin
+22:07:48,500  INFO AdminClient,main:22 - press 6 for delete student
+22:07:48,501  INFO AdminClient,main:23 - press 7 for delete professor
+22:07:48,501  INFO AdminClient,main:24 - press 8 for delete admin
+22:07:48,501  INFO AdminClient,main:25 - press 9 to add course to catalog
+22:07:48,501  INFO AdminClient,main:26 - press 10 to update course in catalog
+22:07:48,501  INFO AdminClient,main:27 - press 11 to delete course from catalog
+22:07:48,501  INFO AdminClient,main:28 - press 12 to view student details
+22:07:48,501  INFO AdminClient,main:29 - press 13 to logout
+22:18:46,829  INFO UserClient,main:26 - Login portal
+22:18:46,831  INFO UserClient,main:27 - enter username and password
+22:18:53,392  INFO UserClient,main:37 - admin is logged in
+22:18:53,392  INFO UserClient,main:38 - 2020-06-12T22:18:52.326/FRIDAY
+22:18:53,395  INFO AdminClient,main:15 - welcome to admin
+22:18:53,395  INFO AdminClient,main:16 - press 0 for adding student
+22:18:53,395  INFO AdminClient,main:17 - press 1 for adding professor
+22:18:53,395  INFO AdminClient,main:18 - press 2 for adding admin
+22:18:53,395  INFO AdminClient,main:19 - press 3 for update student
+22:18:53,395  INFO AdminClient,main:20 - press 4 for update professor
+22:18:53,395  INFO AdminClient,main:21 - press 5 for update admin
+22:18:53,395  INFO AdminClient,main:22 - press 6 for delete student
+22:18:53,396  INFO AdminClient,main:23 - press 7 for delete professor
+22:18:53,396  INFO AdminClient,main:24 - press 8 for delete admin
+22:18:53,396  INFO AdminClient,main:25 - press 9 to add course to catalog
+22:18:53,396  INFO AdminClient,main:26 - press 10 to update course in catalog
+22:18:53,396  INFO AdminClient,main:27 - press 11 to delete course from catalog
+22:18:53,396  INFO AdminClient,main:28 - press 12 to view student details
+22:18:53,396  INFO AdminClient,main:29 - press 13 to logout
+22:19:03,218  INFO AdminClient,main:55 - deleting student
+22:19:03,219  INFO AdminClient,main:56 - enter username of student
+22:19:09,279  INFO AdminOperation,main:35 - ram@123 deleted successfully
+22:26:03,611  INFO UserClient,main:26 - Login portal
+22:26:03,613  INFO UserClient,main:27 - enter username and password
+22:26:12,509  INFO UserClient,main:37 - admin is logged in
+22:26:12,510  INFO UserClient,main:38 - 2020-06-12T22:26:11.506/FRIDAY
+22:26:12,512  INFO AdminClient,main:16 - welcome to admin
+22:26:12,512  INFO AdminClient,main:17 - press 0 for adding student
+22:26:12,512  INFO AdminClient,main:18 - press 1 for adding professor
+22:26:12,512  INFO AdminClient,main:19 - press 2 for adding admin
+22:26:12,512  INFO AdminClient,main:20 - press 3 for update student
+22:26:12,512  INFO AdminClient,main:21 - press 4 for update professor
+22:26:12,513  INFO AdminClient,main:22 - press 5 for update admin
+22:26:12,513  INFO AdminClient,main:23 - press 6 for delete student
+22:26:12,513  INFO AdminClient,main:24 - press 7 for delete professor
+22:26:12,513  INFO AdminClient,main:25 - press 8 for delete admin
+22:26:12,513  INFO AdminClient,main:26 - press 9 to add course to catalog
+22:26:12,513  INFO AdminClient,main:27 - press 10 to update course in catalog
+22:26:12,513  INFO AdminClient,main:28 - press 11 to delete course from catalog
+22:26:12,513  INFO AdminClient,main:29 - press 12 to view student details
+22:26:12,514  INFO AdminClient,main:30 - press 13 to logout
+22:26:16,916  INFO AdminClient,main:56 - adding professor
+22:26:16,917  INFO AdminClient,main:57 - enter username for professor
+22:26:27,009  INFO AdminClient,main:59 - enter password for professor
+22:26:33,311  INFO AdminClient,main:61 - enter name of professor
+22:26:36,213  INFO AdminClient,main:63 - enter address of professor
+22:26:43,287  INFO AdminClient,main:65 - enter mobilenumber of professor
+22:29:09,428  INFO UserClient,main:26 - Login portal
+22:29:09,434  INFO UserClient,main:27 - enter username and password
+22:29:17,986  INFO UserClient,main:37 - admin is logged in
+22:29:17,987  INFO UserClient,main:38 - 2020-06-12T22:29:16.933/FRIDAY
+22:29:17,989  INFO AdminClient,main:16 - welcome to admin
+22:29:17,989  INFO AdminClient,main:17 - press 0 for adding student
+22:29:17,989  INFO AdminClient,main:18 - press 1 for adding professor
+22:29:17,989  INFO AdminClient,main:19 - press 2 for adding admin
+22:29:17,989  INFO AdminClient,main:20 - press 3 for update student
+22:29:17,989  INFO AdminClient,main:21 - press 4 for update professor
+22:29:17,990  INFO AdminClient,main:22 - press 5 for update admin
+22:29:17,990  INFO AdminClient,main:23 - press 6 for delete student
+22:29:17,990  INFO AdminClient,main:24 - press 7 for delete professor
+22:29:17,990  INFO AdminClient,main:25 - press 8 for delete admin
+22:29:17,990  INFO AdminClient,main:26 - press 9 to add course to catalog
+22:29:17,990  INFO AdminClient,main:27 - press 10 to update course in catalog
+22:29:17,990  INFO AdminClient,main:28 - press 11 to delete course from catalog
+22:29:17,991  INFO AdminClient,main:29 - press 12 to view student details
+22:29:17,991  INFO AdminClient,main:30 - press 13 to logout
+22:29:23,989  INFO AdminClient,main:56 - adding professor
+22:29:23,990  INFO AdminClient,main:57 - enter username for professor
+22:29:30,670  INFO AdminClient,main:59 - enter password for professor
+22:29:32,171  INFO AdminClient,main:61 - enter name of professor
+22:29:33,757  INFO AdminClient,main:63 - enter address of professor
+22:29:38,600  INFO AdminClient,main:65 - enter mobilenumber of professor
+22:29:44,280  INFO AdminOperation,main:52 - amit added successfully
+07:20:00,783  INFO UserClient,main:26 - Login portal
+07:20:00,786  INFO UserClient,main:27 - enter username and password
+07:20:10,551  INFO UserClient,main:43 - professor is logged in
+07:20:10,551  INFO UserClient,main:44 - 2020-06-13T07:20:09.206/SATURDAY
+07:20:10,552  INFO ProfessorClient,main:15 - welcome to professor portal
+07:20:10,553  INFO ProfessorClient,main:19 - enter 0 for getting list of enrolled students
+07:20:10,553  INFO ProfessorClient,main:20 - enter 1 for selecting course for teaching
+07:20:10,553  INFO ProfessorClient,main:21 - enter 2 for uploading grades
+07:20:10,553  INFO ProfessorClient,main:22 - enter 3 for logout
+07:20:16,664  INFO ProfessorClient,main:35 - logging out
+07:20:16,664  INFO UserClient,main:48 - studnet is logged in
+07:20:16,664  INFO UserClient,main:49 - 2020-06-13T07:20:09.206/SATURDAY
+07:20:16,667  INFO StudentClient,main:68 - Welecome to student login
+07:20:16,667  INFO StudentOperation,main:74 - Student details are fetched
+07:20:16,731 ERROR StudentDaoImpl,main:165 - Illegal operation on empty result set.
+07:20:16,733  INFO StudentClient,main:17 - press 0 for view catalog
+07:20:16,733  INFO StudentClient,main:18 - press 1 for register course
+07:20:16,734  INFO StudentClient,main:19 - press 2 for change schedule
+07:20:16,735  INFO StudentClient,main:20 - press 3 for view grades
+07:20:16,735  INFO StudentClient,main:21 - press 4 for logout
+07:53:54,341  INFO UserClient,main:26 - Login portal
+07:53:54,344  INFO UserClient,main:27 - enter username and password
+07:56:05,949  INFO UserClient,main:26 - Login portal
+07:56:05,952  INFO UserClient,main:27 - enter username
+07:56:22,923  INFO UserClient,main:29 - enter password
+07:56:28,159  INFO UserClient,main:38 - admin is logged in
+07:56:28,160  INFO UserClient,main:39 - 2020-06-13T07:56:26.532/SATURDAY
+07:56:28,162  INFO AdminClient,main:23 - welcome to admin
+07:56:28,162  INFO AdminClient,main:24 - press 0 for adding student
+07:56:28,163  INFO AdminClient,main:25 - press 1 for adding professor
+07:56:28,163  INFO AdminClient,main:26 - press 2 for adding admin
+07:56:28,163  INFO AdminClient,main:27 - press 3 for update student
+07:56:28,163  INFO AdminClient,main:28 - press 4 for update professor
+07:56:28,163  INFO AdminClient,main:29 - press 5 for update admin
+07:56:28,163  INFO AdminClient,main:30 - press 6 for delete student
+07:56:28,163  INFO AdminClient,main:31 - press 7 for delete professor
+07:56:28,163  INFO AdminClient,main:32 - press 8 for delete admin
+07:56:28,164  INFO AdminClient,main:33 - press 9 to add course to catalog
+07:56:28,164  INFO AdminClient,main:34 - press 10 to update course in catalog
+07:56:28,164  INFO AdminClient,main:35 - press 11 to delete course from catalog
+07:56:28,164  INFO AdminClient,main:36 - press 12 to view student details
+07:56:28,164  INFO AdminClient,main:37 - press 13 to logout
+07:56:38,587  INFO UserClient,main:26 - Login portal
+07:56:38,587  INFO UserClient,main:27 - enter username

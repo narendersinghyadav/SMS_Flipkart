@@ -77,7 +77,7 @@ public class ProfessorDaoImpl implements ProfessorDao{
 	}
 
 	@Override
-	public boolean chooseCourse(Professor professor,int courseid) {
+	public boolean chooseCourse(String professorusername,int courseid) {
 		// TODO Auto-generated method stub
 		connection=DBUtil.getConnection();
 		
@@ -85,7 +85,7 @@ public class ProfessorDaoImpl implements ProfessorDao{
 		try {
 			//list customer statement
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.CHOOSE_COURSE_FOR_TEACHING);
-			statement.setString(1, professor.getUsername());
+			statement.setString(1, professorusername);
 			statement.setInt(2, courseid);
 			
 			int row=statement.executeUpdate();

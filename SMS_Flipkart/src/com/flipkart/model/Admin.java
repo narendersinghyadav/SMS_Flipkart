@@ -11,6 +11,9 @@ public class Admin extends User{
 		this.adminAddress=adminAddress;
 		this.adminMobilenumber=adminMobilenumber;
 	}
+	public Admin(String username) {
+		super(username,"");
+	}
 	public String getAdminName() {
 		return adminName;
 	}

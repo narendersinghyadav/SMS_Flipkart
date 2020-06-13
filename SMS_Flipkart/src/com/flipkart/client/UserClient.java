@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import org.apache.log4j.Logger;
 
+import com.flipkart.constant.RoleConstants;
 import com.flipkart.exception.IncorrectPasswordException;
 import com.flipkart.exception.UserNotFoundException;
 import com.flipkart.model.Student;
@@ -23,8 +24,9 @@ public class UserClient {
 		Scanner scanner=new Scanner(System.in);
 		while(true) {
 		logger.info("Login portal");
-		logger.info("enter username and password");
+		logger.info("enter username");
 		username=scanner.next();
+		logger.info("enter password");
 		password=scanner.next();
 		CheckIdentity checkidentity=new CheckIdentity();
 		LocalDateTime localtime=LocalDateTime.now();
@@ -32,18 +34,19 @@ public class UserClient {
 		try {
 			int role=checkidentity.checkIdentity(username, password);
 			switch(role){
-			case 1:
+			case RoleConstants.ADMIN:
 				logger.info("admin is logged in");
 				logger.info(localtime+"/"+localtime.getDayOfWeek());
 				AdminClient adminclient=new AdminClient();
-				adminclient.main(username,password);
+				adminclient.main();
 				break;
-			case 2:
+			case RoleConstants.PROFESSOR:
 				logger.info("professor is logged in");
 				logger.info(localtime+"/"+localtime.getDayOfWeek());
 				ProfessorClient professorclient=new ProfessorClient();
 				professorclient.main(username,password);
-			case 3:
+				break;
+			case RoleConstants.STUDENT:
 				logger.info("studnet is logged in");
 				logger.info(localtime+"/"+localtime.getDayOfWeek());
 				StudentClient studentclient=new StudentClient();
@@ -53,9 +56,9 @@ public class UserClient {
 		} catch (IncorrectPasswordException | UserNotFoundException e) {
 			// TODO Auto-generated catch block
 			logger.error(e.getMessage());
-		}finally {
-			scanner.close();
 		}
 	}
+		
 	}
+	
 }
