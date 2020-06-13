@@ -23,7 +23,7 @@ public class AdminDaoImpl implements AdminDao{
 	private static Logger logger=Logger.getLogger(AdminDaoImpl.class);
 	public static Connection connection=null;
 	UserDao userdao=new UserDaoImpl();
-	
+
 	@Override
 	public boolean insertStudent(Student student) {
 		// TODO Auto-generated method stub
@@ -32,7 +32,7 @@ public class AdminDaoImpl implements AdminDao{
 		//customer list
 		try {
 			//list customer statement
-		
+
 			userdao.addUser(user);
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.ADD_STUDENT);
 			statement.setString(1, student.getUsername());
@@ -45,12 +45,12 @@ public class AdminDaoImpl implements AdminDao{
 			if(row!=0) {
 				return true;
 			}
-			 statement.close();
-			 
-	}catch(SQLException e) {
-		logger.error(e.getMessage());
-	}
-	return false;
+			statement.close();
+
+		}catch(SQLException e) {
+			logger.error(e.getMessage());
+		}
+		return false;
 	}
 
 	@Override
@@ -67,24 +67,24 @@ public class AdminDaoImpl implements AdminDao{
 			if(row!=0) {
 				return true;
 			}
-			 statement.close();
-			 
-	}catch(SQLException e) {
-		logger.error(e.getMessage());
-	}
-	return false;
-		
+			statement.close();
+
+		}catch(SQLException e) {
+			logger.error(e.getMessage());
+		}
+		return false;
+
 	}
 
 	@Override
 	public boolean updateStudent(Student student) {
 		// TODO Auto-generated method stub
 		connection=DBUtil.getConnection();
-		
+
 		//customer list
 		try {
 			//list customer statement
-			
+
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.UPDATE_STUDENT);
 			statement.setString(6, student.getUsername());
 			statement.setString(1, student.getStudentname());
@@ -96,13 +96,13 @@ public class AdminDaoImpl implements AdminDao{
 			if(row!=0) {
 				return true;
 			}
-			 statement.close();
-			 
-	}catch(SQLException e) {
-		logger.error(e.getMessage());
-	}
-	return false;
-		
+			statement.close();
+
+		}catch(SQLException e) {
+			logger.error(e.getMessage());
+		}
+		return false;
+
 	}
 
 	@Override
@@ -123,13 +123,13 @@ public class AdminDaoImpl implements AdminDao{
 			if(row!=0) {
 				return true;
 			}
-			 statement.close();
-			 
-	}catch(SQLException e) {
-		logger.error(e.getMessage());
-	}
-	return false;
-		
+			statement.close();
+
+		}catch(SQLException e) {
+			logger.error(e.getMessage());
+		}
+		return false;
+
 	}
 
 	@Override
@@ -147,24 +147,24 @@ public class AdminDaoImpl implements AdminDao{
 			if(row!=0) {
 				return true;
 			}
-			 statement.close();
-			 
-	}catch(SQLException e) {
-		logger.error(e.getMessage());
-	}
-	return false;
-		
+			statement.close();
+
+		}catch(SQLException e) {
+			logger.error(e.getMessage());
+		}
+		return false;
+
 	}
 
 	@Override
 	public boolean updateProfessor(Professor professor) {
 		// TODO Auto-generated method stub
 		connection=DBUtil.getConnection();
-		
+
 		//customer list
 		try {
 			//list customer statement
-			
+
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.UPDATE_PROFESSOR);
 			statement.setString(4, professor.getUsername());
 			statement.setString(1, professor.getProfessorName());
@@ -174,13 +174,13 @@ public class AdminDaoImpl implements AdminDao{
 			if(row!=0) {
 				return true;
 			}
-			 statement.close();
-			 
-	}catch(SQLException e) {
-		logger.error(e.getMessage());
-	}
-	return false;
-		
+			statement.close();
+
+		}catch(SQLException e) {
+			logger.error(e.getMessage());
+		}
+		return false;
+
 	}
 
 	@Override
@@ -201,12 +201,12 @@ public class AdminDaoImpl implements AdminDao{
 			if(row!=0) {
 				return true;
 			}
-			 statement.close();
-			 
-	}catch(SQLException e) {
-		logger.error(e.getMessage());
-	}
-	return false;
+			statement.close();
+
+		}catch(SQLException e) {
+			logger.error(e.getMessage());
+		}
+		return false;
 	}
 
 	@Override
@@ -224,23 +224,23 @@ public class AdminDaoImpl implements AdminDao{
 			if(row!=0) {
 				return true;
 			}
-			 statement.close();
-			 
-	}catch(SQLException e) {
-		logger.error(e.getMessage());
-	}
-	return false;
+			statement.close();
+
+		}catch(SQLException e) {
+			logger.error(e.getMessage());
+		}
+		return false;
 	}
 
 	@Override
 	public boolean updateAdmin(Admin admin) {
 		// TODO Auto-generated method stub
 		connection=DBUtil.getConnection();
-		
+
 		//customer list
 		try {
 			//list customer statement
-			
+
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.UPDATE_ADMIN);
 			statement.setString(4, admin.getUsername());
 			statement.setString(1, admin.getAdminName());
@@ -250,23 +250,23 @@ public class AdminDaoImpl implements AdminDao{
 			if(row!=0) {
 				return true;
 			}
-			 statement.close();
-			 
-	}catch(SQLException e) {
-		logger.error(e.getMessage());
-	}
-	return false;
+			statement.close();
+
+		}catch(SQLException e) {
+			logger.error(e.getMessage());
+		}
+		return false;
 	}
 
 	@Override
 	public boolean insertCourseToDb(Course course) {
 		// TODO Auto-generated method stub
 		connection=DBUtil.getConnection();
-		
+
 		//customer list
 		try {
 			//list customer statement
-			
+
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.ADD_COURSE_TO_DB);
 			statement.setInt(1, course.getCourseId());
 			statement.setString(2, course.getCourseName());
@@ -276,11 +276,11 @@ public class AdminDaoImpl implements AdminDao{
 			if(row!=0) {
 				return true;
 			}
-			 statement.close();
-			 
-			}catch(SQLException e) {
-				logger.error(e.getMessage());
-			}
+			statement.close();
+
+		}catch(SQLException e) {
+			logger.error(e.getMessage());
+		}
 		return false;
 	}
 
@@ -288,22 +288,22 @@ public class AdminDaoImpl implements AdminDao{
 	public boolean dropCourseFromDb(Course course) {
 		// TODO Auto-generated method stub
 		connection=DBUtil.getConnection();
-		
+
 		//customer list
 		try {
 			//list customer statement
-			
+
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.DELETE_COURSE_TO_DB);
 			statement.setInt(1, course.getCourseId());
 			int row=statement.executeUpdate();
 			if(row!=0) {
 				return true;
 			}
-			 statement.close();
-			 
-			}catch(SQLException e) {
-				logger.error(e.getMessage());
-			}
+			statement.close();
+
+		}catch(SQLException e) {
+			logger.error(e.getMessage());
+		}
 		return false;
 	}
 
@@ -311,11 +311,11 @@ public class AdminDaoImpl implements AdminDao{
 	public boolean updateCourseInDb(Course course) {
 		// TODO Auto-generated method stub
 		connection=DBUtil.getConnection();
-		
+
 		//customer list
 		try {
 			//list customer statement
-			
+
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.UPDATE_COURSE_TO_DB);
 			statement.setInt(4, course.getCourseId());
 			statement.setString(1, course.getCourseName());
@@ -325,13 +325,13 @@ public class AdminDaoImpl implements AdminDao{
 			if(row!=0) {
 				return true;
 			}
-			 statement.close();
-			 
-			}catch(SQLException e) {
-				logger.error(e.getMessage());
-			}
+			statement.close();
+
+		}catch(SQLException e) {
+			logger.error(e.getMessage());
+		}
 		return false;
-		
+
 	}
 
 	@Override
@@ -344,19 +344,19 @@ public class AdminDaoImpl implements AdminDao{
 			//list customer statement
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.LIST_STUDENT);
 			ResultSet resultset=statement.executeQuery();
-			
-			 while(resultset.next()){
-		         //Retrieve by column name
+
+			while(resultset.next()){
+				//Retrieve by column name
 				student=new Student(resultset.getString("username")," ",resultset.getString("name"),resultset.getString("address"),resultset.getString("year"),resultset.getString("mobilenumber"),resultset.getString("gender"));
 				studentlist.add(student);
-				}
-			 
-			 resultset.close();
-			 statement.close();
-			 
-	}catch(SQLException e) {
-		logger.error(e.getMessage());
-	}
+			}
+
+			resultset.close();
+			statement.close();
+
+		}catch(SQLException e) {
+			logger.error(e.getMessage());
+		}
 		return studentlist;
 	}
 

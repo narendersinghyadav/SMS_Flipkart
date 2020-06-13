@@ -17,10 +17,10 @@ import com.flipkart.utils.DBUtil;
 
 public class ProfessorDaoImpl implements ProfessorDao{
 
-	
+
 	private static Logger logger=Logger.getLogger(UserDaoImpl.class);
 	public static Connection connection=null;
-	
+
 	@Override
 	public List<Integer> listEnrolledStudents(int courseid) {
 		// TODO Auto-generated method stub
@@ -35,19 +35,19 @@ public class ProfessorDaoImpl implements ProfessorDao{
 			statement.setInt(3, courseid);
 			statement.setInt(4, courseid);
 			ResultSet resultset=statement.executeQuery();
-			
-			 while(resultset.next()){
-		         //Retrieve by column name
-		        int studentid=resultset.getInt("studentid");
-		         array.add(studentid);
-		      }
-			 
-			 resultset.close();
-			 statement.close();
-			 
-	}catch(SQLException e) {
-		logger.error(e.getMessage());
-	}
+
+			while(resultset.next()){
+				//Retrieve by column name
+				int studentid=resultset.getInt("studentid");
+				array.add(studentid);
+			}
+
+			resultset.close();
+			statement.close();
+
+		}catch(SQLException e) {
+			logger.error(e.getMessage());
+		}
 		return array;
 	}
 
@@ -55,7 +55,7 @@ public class ProfessorDaoImpl implements ProfessorDao{
 	public boolean addGrade(int grade, Student student,int courseid) {
 		// TODO Auto-generated method stub
 		connection=DBUtil.getConnection();
-		
+
 		//customer list
 		try {
 			//list customer statement
@@ -63,16 +63,16 @@ public class ProfessorDaoImpl implements ProfessorDao{
 			statement.setString(1, student.getUsername());
 			statement.setInt(2, courseid);
 			statement.setInt(3, grade);
-			
+
 			int row=statement.executeUpdate();
 			if(row!=0) {
 				return true;
 			}
-			 statement.close();
-			 
-	}catch(SQLException e) {
-		logger.error(e.getMessage());
-	}
+			statement.close();
+
+		}catch(SQLException e) {
+			logger.error(e.getMessage());
+		}
 		return false;
 	}
 
@@ -80,23 +80,23 @@ public class ProfessorDaoImpl implements ProfessorDao{
 	public boolean chooseCourse(String professorusername,int courseid) {
 		// TODO Auto-generated method stub
 		connection=DBUtil.getConnection();
-		
+
 		//customer list
 		try {
 			//list customer statement
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.CHOOSE_COURSE_FOR_TEACHING);
 			statement.setString(1, professorusername);
 			statement.setInt(2, courseid);
-			
+
 			int row=statement.executeUpdate();
 			if(row!=0) {
 				return true;
 			}
-			 statement.close();
-			 
-	}catch(SQLException e) {
-		logger.error(e.getMessage());
-	}
+			statement.close();
+
+		}catch(SQLException e) {
+			logger.error(e.getMessage());
+		}
 		return false;
 	}
 

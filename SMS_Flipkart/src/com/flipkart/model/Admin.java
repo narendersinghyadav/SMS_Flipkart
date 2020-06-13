@@ -4,7 +4,7 @@ public class Admin extends User{
 	private String adminName;
 	private String adminAddress;
 	private String adminMobilenumber;
-	
+
 	public Admin(String username,String password,String adminName,String adminAddress,String adminMobilenumber) {
 		super(username,password);
 		this.adminName=adminName;

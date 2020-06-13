@@ -14,10 +14,10 @@ public class ProfessorOperation implements ProfessorInterface{
 	@Override
 	public void viewEnrolledStudents(int courseid) {
 		// TODO Auto-generated method stub
-		
+
 		List<Integer> list=professordao.listEnrolledStudents(courseid);
 		list.forEach(student->logger.info("student enrolled username "+student));
-		
+
 	}
 
 	@Override

@@ -1,18 +1,18 @@
 package com.flipkart.model;
 //Student class
 public class Student extends User{
-	
+
 	private String studentName;
 	private String studentAddress;
 	private String studentYear;
 	private String studentMobilenumber;
 	private String gender;
-	
+
 	private int course1grade;
 	private int course2grade;
 	private int course3grade;
 	private int course4grade;
-	
+
 	public Student(String username,String password,String studentName,String studentAddress,String studentYear,String studentMobilenumber,String gender) {
 		super(username,password);
 		this.studentName=studentName;
@@ -80,5 +80,5 @@ public class Student extends User{
 	public void setStudentmobilenumber(String studentMobilenumber) {
 		this.studentMobilenumber = studentMobilenumber;
 	}
-	
+
 }

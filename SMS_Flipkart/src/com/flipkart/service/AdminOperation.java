@@ -1,7 +1,6 @@
 package com.flipkart.service;
 
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -48,7 +47,7 @@ public class AdminOperation implements AdminInterface{
 		else {
 			logger.info(student.getUsername()+" not updated");
 		}
-		
+
 	}
 
 	@Override
@@ -155,16 +154,20 @@ public class AdminOperation implements AdminInterface{
 		// TODO Auto-generated method stub\\\\\
 		List<Student> studentlist=admindao.fetchStudent();
 		logger.info(String.format("username    name    address  year   mobilenumber"));
-		
-		List<Student> studentfemale=studentlist.stream().filter(student->student.getGender().equalsIgnoreCase("f")).flatMap(
-		student->Stream.of(new Student(student.getUsername(),""," Ms."+student.getStudentname(),student.getStudentaddress(),student.getStudentyear(),student.getStudentmobilenumber(),student.getGender())))
-		.collect(Collectors.toList());
-		studentfemale.forEach(list->logger.info(list.getUsername()+" "+list.getStudentname()+" "+list.getStudentaddress()+" "+list.getStudentyear()+" "+list.getStudentmobilenumber()));
-		
-		List<Student> studentmale=studentlist.stream().filter(student->student.getGender().equalsIgnoreCase("m")).flatMap(
-				student->Stream.of(new Student(student.getUsername(),""," Mr."+student.getStudentname(),student.getStudentaddress(),student.getStudentyear(),student.getStudentmobilenumber(),student.getGender())))
+
+		List<Student> studentfemale=studentlist
+				.stream()
+				.filter(student->student.getGender().equalsIgnoreCase("f"))
+				.flatMap(student->Stream.of(new Student(student.getUsername(),""," Ms."+student.getStudentname(),student.getStudentaddress(),student.getStudentyear(),student.getStudentmobilenumber(),student.getGender())))
 				.collect(Collectors.toList());
-				studentmale.forEach(list->logger.info(list.getUsername()+" "+list.getStudentname()+" "+list.getStudentaddress()+" "+list.getStudentyear()+" "+list.getStudentmobilenumber()));
+		studentfemale.forEach(list->logger.info(list.getUsername()+" "+list.getStudentname()+" "+list.getStudentaddress()+" "+list.getStudentyear()+" "+list.getStudentmobilenumber()));
+
+		List<Student> studentmale=studentlist
+				.stream()
+				.filter(student->student.getGender().equalsIgnoreCase("m"))
+				.flatMap(student->Stream.of(new Student(student.getUsername(),""," Mr."+student.getStudentname(),student.getStudentaddress(),student.getStudentyear(),student.getStudentmobilenumber(),student.getGender())))
+				.collect(Collectors.toList());
+		studentmale.forEach(list->logger.info(list.getUsername()+" "+list.getStudentname()+" "+list.getStudentaddress()+" "+list.getStudentyear()+" "+list.getStudentmobilenumber()));
 	}
 
 }

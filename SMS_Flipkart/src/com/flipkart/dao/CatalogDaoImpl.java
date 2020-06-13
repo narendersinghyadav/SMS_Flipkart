@@ -24,23 +24,23 @@ public class CatalogDaoImpl implements CatalogDao{
 			//list customer statement
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.LIST_CATALOG);
 			ResultSet resultset=statement.executeQuery();
-			
-			 while(resultset.next()){
-		         //Retrieve by column name
-				 int courseid=resultset.getInt("courseid");
-				 String coursename=resultset.getString("coursename");
-				 String courseschedule=resultset.getString("courseschedule");
-				 int numberofstudents=resultset.getInt("numberofStudents");
-				 Course course=new Course(courseid,coursename,courseschedule,numberofstudents);
-				 courselist.add(course);
-		      }
-			 
-			 resultset.close();
-			 statement.close();
-			 
-	}catch(SQLException e) {
-		logger.error(e.getMessage());
-	}
+
+			while(resultset.next()){
+				//Retrieve by column name
+				int courseid=resultset.getInt("courseid");
+				String coursename=resultset.getString("coursename");
+				String courseschedule=resultset.getString("courseschedule");
+				int numberofstudents=resultset.getInt("numberofStudents");
+				Course course=new Course(courseid,coursename,courseschedule,numberofstudents);
+				courselist.add(course);
+			}
+
+			resultset.close();
+			statement.close();
+
+		}catch(SQLException e) {
+			logger.error(e.getMessage());
+		}
 		return courselist;
 	}
 }

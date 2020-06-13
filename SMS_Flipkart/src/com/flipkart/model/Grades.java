@@ -11,7 +11,7 @@ public class Grades {
 		this.course3grade = course3grade;
 		this.course4grade = course4grade;
 	}
-	
+
 	public int getCourse1grade() {
 		return course1grade;
 	}
@@ -36,5 +36,5 @@ public class Grades {
 	public void setCourse4grade(int course4grade) {
 		this.course4grade = course4grade;
 	}
-	
+
 }

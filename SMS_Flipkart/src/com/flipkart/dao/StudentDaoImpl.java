@@ -25,7 +25,7 @@ public class StudentDaoImpl implements StudentDao{
 		LocalTime localtime=LocalTime.now();
 		LocalDate localdate=LocalDate.now();
 		LocalDateTime localdatetime=LocalDateTime.now();
-		
+
 		//customer list
 		try {
 			//list customer statement
@@ -40,12 +40,12 @@ public class StudentDaoImpl implements StudentDao{
 			if(row!=0) {
 				return true;
 			}
-			 statement.close();
-			 
-	}catch(SQLException e) {
-		logger.error(e.getMessage());
-	}
-	return false;	
+			statement.close();
+
+		}catch(SQLException e) {
+			logger.error(e.getMessage());
+		}
+		return false;	
 	}
 
 	@Override
@@ -59,7 +59,7 @@ public class StudentDaoImpl implements StudentDao{
 		try {
 			//list customer statement
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.UPDATE_COURSE_BY_STUDENT);
-			
+
 			statement.setInt(1,courseid1);
 			statement.setInt(2,courseid2);
 			statement.setInt(3,courseid3);
@@ -70,14 +70,14 @@ public class StudentDaoImpl implements StudentDao{
 			if(row==0) {
 				return false;
 			}
-			 statement.close();
-			 return true;
-			 
-	}catch(SQLException e) {
-		logger.error(e.getMessage());
-	}
-	return false;
-		
+			statement.close();
+			return true;
+
+		}catch(SQLException e) {
+			logger.error(e.getMessage());
+		}
+		return false;
+
 	}
 
 	@Override
@@ -86,7 +86,7 @@ public class StudentDaoImpl implements StudentDao{
 		try {
 			//list customer statement
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.CHANGE_SCHEDULE_BY_STUDENT);
-			
+
 			statement.setString(1,schedule);
 			statement.setInt(3,courseid);
 			statement.setString(2,student.getUsername());
@@ -94,14 +94,14 @@ public class StudentDaoImpl implements StudentDao{
 			if(row==0) {
 				return false;
 			}
-			 statement.close();
-			 return true;
-			 
-	}catch(SQLException e) {
-		logger.error(e.getMessage());
-	}
+			statement.close();
+			return true;
+
+		}catch(SQLException e) {
+			logger.error(e.getMessage());
+		}
 		return false;
-		
+
 	}
 
 	@Override
@@ -112,31 +112,31 @@ public class StudentDaoImpl implements StudentDao{
 		try {
 			//list customer statement
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.LIST_GRADE);
-			
+
 			statement.setString(1,student.getUsername());
 			ResultSet resultset=statement.executeQuery();
 			resultset.next();
-				student.setCourse1grade(resultset.getInt("coursegrade"));
-				resultset.next();
-				student.setCourse2grade(resultset.getInt("coursegrade"));
-				resultset.next();
-				student.setCourse3grade(resultset.getInt("coursegrade"));
-				resultset.next();
-				student.setCourse4grade(resultset.getInt("coursegrade"));
-			
-			 statement.close();
-			 
-	}catch(SQLException e) {
-		logger.error(e.getMessage());
-	}
+			student.setCourse1grade(resultset.getInt("coursegrade"));
+			resultset.next();
+			student.setCourse2grade(resultset.getInt("coursegrade"));
+			resultset.next();
+			student.setCourse3grade(resultset.getInt("coursegrade"));
+			resultset.next();
+			student.setCourse4grade(resultset.getInt("coursegrade"));
+
+			statement.close();
+
+		}catch(SQLException e) {
+			logger.error(e.getMessage());
+		}
 		return student;
-		
+
 	}
 
 	@Override
 	public void payFees(Student student) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -148,7 +148,7 @@ public class StudentDaoImpl implements StudentDao{
 		try {
 			//list customer statement
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.GET_STUDENT_DETAILS);
-			
+
 			statement.setString(1,username);
 			ResultSet resultset=statement.executeQuery();
 			resultset.next();
@@ -158,12 +158,12 @@ public class StudentDaoImpl implements StudentDao{
 			String year=resultset.getString("year");
 			String mobilenumber=resultset.getString("mobilenumber");
 			String gender=resultset.getString("gender");
-			 statement.close();
-			 student=new Student(username,password,name,address,year,mobilenumber,gender);
-			 
-	}catch(SQLException e) {
-		logger.error(e.getMessage());
-	}
+			statement.close();
+			student=new Student(username,password,name,address,year,mobilenumber,gender);
+
+		}catch(SQLException e) {
+			logger.error(e.getMessage());
+		}
 		return student;
 	}
 

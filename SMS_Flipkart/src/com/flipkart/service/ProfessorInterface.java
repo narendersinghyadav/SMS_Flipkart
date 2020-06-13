@@ -1,6 +1,5 @@
 package com.flipkart.service;
 
-import com.flipkart.model.Professor;
 import com.flipkart.model.Student;
 
 public interface ProfessorInterface {

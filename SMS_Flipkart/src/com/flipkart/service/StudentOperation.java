@@ -23,7 +23,7 @@ public class StudentOperation implements  StudentInterface{
 		else {
 			logger.error("please add again all courses");
 		}
-		
+
 	}
 
 	@Override
@@ -42,10 +42,9 @@ public class StudentOperation implements  StudentInterface{
 		// TODO Auto-generated method stub
 		CatalogDao catalog =new CatalogDaoImpl();
 		List<Course> list=catalog.getCatalog();
-		for(Course course:list) {
-			logger.info("course details: "+course.getCourseId()+" "+course.getCourseName()+" "+course.getCourseSchedule());
-		}
-		
+		logger.info("             Course Id       Course Name     Course Schedule    ");
+		list.forEach(course->logger.info("course details: "+course.getCourseId()+"        "+course.getCourseName()+"      "+course.getCourseSchedule()));
+
 	}
 
 	@Override
@@ -54,21 +53,21 @@ public class StudentOperation implements  StudentInterface{
 		if(studentdao.updateCourseSchedule(student, courseid, schedule)) {
 			logger.info("schedule updated successfully");
 		}
-		
+
 	}
 
 	@Override
 	public void viewGrade(Student student) {
 		// TODO Auto-generated method stub
 		StudentDaoImpl studentdao=new StudentDaoImpl();
-		 student=studentdao.listGrade(student);
+		student=studentdao.listGrade(student);
 		logger.info("course grades are:"+student.getCourse1grade()+" "+student.getCourse2grade()+" "+student.getCourse3grade()+" "+student.getCourse4grade());
 	}
 
 	@Override
 	public void payFees() {
 		// TODO Auto-generated method stub
-		
+
 	}
 	public Student getStudentDetails(String username,String password) {
 		logger.info("Student details are fetched");
