@@ -26,6 +26,11 @@ public class StudentDaoImpl implements StudentDao{
 		LocalDate localdate=LocalDate.now();
 		LocalDateTime localdatetime=LocalDateTime.now();
 
+		CatalogDao catalogdao=new CatalogDaoImpl();
+		catalogdao.updateNumberOfStudents(courseid1);
+		catalogdao.updateNumberOfStudents(courseid2);
+		catalogdao.updateNumberOfStudents(courseid3);
+		catalogdao.updateNumberOfStudents(courseid4);
 		//customer list
 		try {
 			//list customer statement
@@ -66,30 +71,6 @@ public class StudentDaoImpl implements StudentDao{
 			statement.setInt(4,courseid4);
 			statement.setString(5,localdate+"/"+localtime+"/"+localdatetime.getDayOfWeek());
 			statement.setString(6,student.getUsername());
-			int row=statement.executeUpdate();
-			if(row==0) {
-				return false;
-			}
-			statement.close();
-			return true;
-
-		}catch(SQLException e) {
-			logger.error(e.getMessage());
-		}
-		return false;
-
-	}
-
-	@Override
-	public boolean updateCourseSchedule(Student student,int courseid,String schedule) {
-		// TODO Auto-generated method stub
-		try {
-			//list customer statement
-			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.CHANGE_SCHEDULE_BY_STUDENT);
-
-			statement.setString(1,schedule);
-			statement.setInt(3,courseid);
-			statement.setString(2,student.getUsername());
 			int row=statement.executeUpdate();
 			if(row==0) {
 				return false;
@@ -151,16 +132,17 @@ public class StudentDaoImpl implements StudentDao{
 
 			statement.setString(1,username);
 			ResultSet resultset=statement.executeQuery();
-			resultset.next();
-			username=resultset.getString("username");
-			String name=resultset.getString("name");
-			String address=resultset.getString("address");
-			String year=resultset.getString("year");
-			String mobilenumber=resultset.getString("mobilenumber");
-			String gender=resultset.getString("gender");
-			statement.close();
-			student=new Student(username,password,name,address,year,mobilenumber,gender);
+			while(resultset.next()) {
+				username=resultset.getString("username");
+				String name=resultset.getString("name");
+				String address=resultset.getString("address");
+				String year=resultset.getString("year");
+				String mobilenumber=resultset.getString("mobilenumber");
+				String gender=resultset.getString("gender");
 
+				student=new Student(username,password,name,address,year,mobilenumber,gender);
+			}
+			statement.close();
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
 		}

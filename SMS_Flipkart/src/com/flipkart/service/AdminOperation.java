@@ -23,7 +23,7 @@ public class AdminOperation implements AdminInterface{
 			logger.info(student.getUsername()+" added successfully");
 		}
 		else {
-			logger.error(student.getUsername()+" not added successfully");
+			logger.error(student.getUsername()+" not added successfully.Student with this username already present");
 		}
 	}
 
@@ -34,7 +34,7 @@ public class AdminOperation implements AdminInterface{
 			logger.info(student.getUsername()+" deleted successfully");
 		}
 		else {
-			logger.error("error in deletion");
+			logger.error("error in deletion.Student with this username is not present");
 		}
 	}
 
@@ -45,7 +45,7 @@ public class AdminOperation implements AdminInterface{
 			logger.info(student.getUsername()+" updated successfully");
 		}
 		else {
-			logger.info(student.getUsername()+" not updated");
+			logger.error(student.getUsername()+" not updated.Student with this username is not present");
 		}
 
 	}
@@ -57,7 +57,7 @@ public class AdminOperation implements AdminInterface{
 			logger.info(professor.getUsername()+" added successfully");
 		}
 		else {
-			logger.error(professor.getUsername()+" not added successfully");
+			logger.error(professor.getUsername()+" not added successfully.Professor with this username is already present");
 		}
 	}
 
@@ -68,7 +68,7 @@ public class AdminOperation implements AdminInterface{
 			logger.info(professor.getUsername()+" deleted successfully");
 		}
 		else {
-			logger.error(professor.getUsername()+" not deleted successfully");
+			logger.error(professor.getUsername()+" not deleted successfully.Professsor with this username is not present");
 		}
 	}
 
@@ -79,7 +79,7 @@ public class AdminOperation implements AdminInterface{
 			logger.info(professor.getUsername()+" updated successfully");
 		}
 		else {
-			logger.error(professor.getUsername()+" not updated successfully");
+			logger.error(professor.getUsername()+" not updated successfully.Professsor with this username is not present.");
 		}
 	}
 
@@ -90,7 +90,7 @@ public class AdminOperation implements AdminInterface{
 			logger.info(admin.getUsername()+" added successfully");
 		}
 		else {
-			logger.error(admin.getUsername()+" not added successfully");
+			logger.error(admin.getUsername()+" not added successfully.Admin with this username is already present");
 		}
 	}
 
@@ -101,7 +101,7 @@ public class AdminOperation implements AdminInterface{
 			logger.info(admin.getUsername()+" deleted successfully");
 		}
 		else {
-			logger.error(admin.getUsername()+" not deleted successfully");
+			logger.error(admin.getUsername()+" not deleted successfully.Admin with this username is not present");
 		}
 	}
 
@@ -112,7 +112,7 @@ public class AdminOperation implements AdminInterface{
 			logger.info(admin.getUsername()+" updated successfully");
 		}
 		else {
-			logger.error(admin.getUsername()+" not updated successfully");
+			logger.error(admin.getUsername()+" not updated successfully.Admin with this username is not present");
 		}
 	}
 
@@ -123,7 +123,7 @@ public class AdminOperation implements AdminInterface{
 			logger.info(course.getCourseName()+" course added successfully");
 		}
 		else {
-			logger.error(course.getCourseName()+"course not added successfully");
+			logger.error(course.getCourseName()+"course not added successfully.Course with courseid already present");
 		}
 	}
 
@@ -134,7 +134,7 @@ public class AdminOperation implements AdminInterface{
 			logger.info(course.getCourseName()+" course deleted successfully");
 		}
 		else {
-			logger.error(course.getCourseName()+"course not deleted successfully");
+			logger.error(course.getCourseName()+"course not deleted successfully.No course with such course id");
 		}
 	}
 
@@ -145,7 +145,7 @@ public class AdminOperation implements AdminInterface{
 			logger.info(course.getCourseName()+" updated successfully");
 		}
 		else {
-			logger.error(course.getCourseName()+" not updated successfully");
+			logger.error(course.getCourseName()+" not updated successfully.No course with such courseid");
 		}
 	}
 
@@ -153,21 +153,21 @@ public class AdminOperation implements AdminInterface{
 	public void listStudent() {
 		// TODO Auto-generated method stub\\\\\
 		List<Student> studentlist=admindao.fetchStudent();
-		logger.info(String.format("username    name    address  year   mobilenumber"));
+		logger.info(String.format("%1$10s %2$10s %3$10s %4$10s %5$10s","username","name","address","year","mobile number"));
 
 		List<Student> studentfemale=studentlist
 				.stream()
 				.filter(student->student.getGender().equalsIgnoreCase("f"))
 				.flatMap(student->Stream.of(new Student(student.getUsername(),""," Ms."+student.getStudentname(),student.getStudentaddress(),student.getStudentyear(),student.getStudentmobilenumber(),student.getGender())))
 				.collect(Collectors.toList());
-		studentfemale.forEach(list->logger.info(list.getUsername()+" "+list.getStudentname()+" "+list.getStudentaddress()+" "+list.getStudentyear()+" "+list.getStudentmobilenumber()));
+		studentfemale.forEach(list->logger.info(String.format("%1$10s %2$10s %3$10s %4$10s %5$10s",list.getUsername(),list.getStudentname(),list.getStudentaddress(),list.getStudentyear(),list.getStudentmobilenumber())));
 
 		List<Student> studentmale=studentlist
 				.stream()
 				.filter(student->student.getGender().equalsIgnoreCase("m"))
 				.flatMap(student->Stream.of(new Student(student.getUsername(),""," Mr."+student.getStudentname(),student.getStudentaddress(),student.getStudentyear(),student.getStudentmobilenumber(),student.getGender())))
 				.collect(Collectors.toList());
-		studentmale.forEach(list->logger.info(list.getUsername()+" "+list.getStudentname()+" "+list.getStudentaddress()+" "+list.getStudentyear()+" "+list.getStudentmobilenumber()));
+		studentmale.forEach(list->logger.info(String.format("%1$10s %2$10s %3$10s %4$10s %5$10s",list.getUsername(),list.getStudentname(),list.getStudentaddress(),list.getStudentyear(),list.getStudentmobilenumber())));
 	}
 
 }

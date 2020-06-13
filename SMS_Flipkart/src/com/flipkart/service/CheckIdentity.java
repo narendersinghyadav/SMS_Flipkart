@@ -20,7 +20,6 @@ public class CheckIdentity {
 		}
 		else if(user.getPassword().equals(password)) {
 			return user.getRole();
-
 		}
 		else {
 			throw new IncorrectPasswordException(username);

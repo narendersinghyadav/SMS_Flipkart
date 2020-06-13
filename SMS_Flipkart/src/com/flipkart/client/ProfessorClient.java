@@ -17,9 +17,9 @@ public class ProfessorClient {
 
 	//Main function
 	public void main(String username,String password) {
-
+		logger.info("****************************");
 		logger.info("welcome to professor portal");
-
+		logger.info("****************************");
 		int choice;
 
 		do {
@@ -27,7 +27,8 @@ public class ProfessorClient {
 			logger.info("enter 1 for getting list of enrolled students");
 			logger.info("enter 2 for selecting course for teaching");
 			logger.info("enter 3 for uploading grades");
-			logger.info("enter 4 for logout");
+			logger.info("enter 4 to view your selected courses for teaching");
+			logger.info("enter 5 for logout");
 			choice=scanner.nextInt();
 			switch(choice){
 			case 0:
@@ -47,12 +48,15 @@ public class ProfessorClient {
 				uploadGrade();
 				break;
 			case 4:
+				selectedCourses(username);
+				break;
+			case 5:
 				//Professor logout
 				logger.info("professor logging out");
 				logger.info(LocalDateTime.now()+"/"+LocalDateTime.now().getDayOfWeek());
 				break;
 			}
-		}while(choice!=4);
+		}while(choice!=5);
 	}
 
 	//View course list
@@ -89,5 +93,9 @@ public class ProfessorClient {
 		logger.info("enter grade ");
 		int grade=scanner.nextInt();
 		professoroperation.updateGrade(grade, new Student(student), courseid);
+	}
+	public void selectedCourses(String username) {
+		logger.info("Here are your Courses");
+		professoroperation.viewSelectedCourse(username);
 	}
 }

@@ -13,6 +13,7 @@ public class CourseCatalog {
 	Logger logger=Logger.getLogger(CourseCatalog.class);
 	public void SearchValidCourse(){
 		List<Course> courselist=coursedao.getCatalog();
-		courselist.forEach(list->logger.info("Course ID: "+list.getCourseId()+"**** Course Name: "+list.getCourseName()+"**** Course Schedule: "+list.getCourseSchedule()+"**** Number of student :"+list.getNumberOfStudents()));
+		logger.info(String.format("%1$10s %2$10s %3$10s %4$10s","Course Id","Course Name","Course Schedule","Number of students"));
+		courselist.forEach(list->logger.info(String.format("%1$10s %2$10s %3$10s %4$10s",list.getCourseId(),list.getCourseName(),list.getCourseSchedule(),list.getNumberOfStudents())));
 	}
 }

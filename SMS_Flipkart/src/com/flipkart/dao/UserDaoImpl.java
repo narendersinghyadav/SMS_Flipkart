@@ -18,7 +18,8 @@ public class UserDaoImpl implements UserDao{
 	public User getPasswordByUsername(String username) {
 		connection=DBUtil.getConnection();
 		User user=null;
-
+		String password="";
+		int role=1;
 		//customer list
 		try {
 			//list customer statement
@@ -28,11 +29,11 @@ public class UserDaoImpl implements UserDao{
 
 			while(resultset.next()){
 				//Retrieve by column name
-				String password=resultset.getString("password");
-				int role=resultset.getInt("role");
-				user=new User(username,password,role);
+				password=resultset.getString("password");
+				role=resultset.getInt("role");
+				
 			}
-
+			user=new User(username,password,role);
 			resultset.close();
 			statement.close();
 

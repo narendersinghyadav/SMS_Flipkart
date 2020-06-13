@@ -1,6 +1,8 @@
 package com.flipkart.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 
@@ -17,7 +19,16 @@ public class StudentOperation implements  StudentInterface{
 	@Override
 	public void addCourses(Student student,int courseid1, int courseid2, int courseid3, int courseid4) {
 		// TODO Auto-generated method stub
-		if(studentdao.addCourse(student, courseid1, courseid2, courseid3, courseid4)) {
+		CatalogDao coursedao=new CatalogDaoImpl();
+		// TODO Auto-generated method stub
+		List<Course> courselist=coursedao.getCatalog();
+		List<Integer> courseidlist=new ArrayList<Integer>();
+		courselist.forEach(course->courseidlist.add(course.getCourseId()));
+		
+		if(!(courseidlist.contains(courseid1) && courseidlist.contains(courseid2) && courseidlist.contains(courseid3)&& courseidlist.contains(courseid4))){
+			logger.error("Invalid course id");
+		}
+		else if(studentdao.addCourse(student, courseid1, courseid2, courseid3, courseid4)) {
 			logger.info("courses successfully added");
 		}
 		else {
@@ -42,19 +53,11 @@ public class StudentOperation implements  StudentInterface{
 		// TODO Auto-generated method stub
 		CatalogDao catalog =new CatalogDaoImpl();
 		List<Course> list=catalog.getCatalog();
-		logger.info("             Course Id       Course Name     Course Schedule    ");
-		list.forEach(course->logger.info("course details: "+course.getCourseId()+"        "+course.getCourseName()+"      "+course.getCourseSchedule()));
+		logger.info(String.format("%1$10s %2$10s %3$10s","Course Id","Course Name","Course Schedule"));
+		list.forEach(course->logger.info(String.format("%1$10s %2$10s %3$10s",course.getCourseId(),course.getCourseName(),course.getCourseSchedule())));
 
 	}
 
-	@Override
-	public void chooseCourseSchedule(Student student,int courseid,String schedule) {
-		// TODO Auto-generated method stub
-		if(studentdao.updateCourseSchedule(student, courseid, schedule)) {
-			logger.info("schedule updated successfully");
-		}
-
-	}
 
 	@Override
 	public void viewGrade(Student student) {
@@ -66,8 +69,7 @@ public class StudentOperation implements  StudentInterface{
 
 	@Override
 	public void payFees() {
-		// TODO Auto-generated method stub
-
+		logger.info("fees payment complete");
 	}
 	public Student getStudentDetails(String username,String password) {
 		logger.info("Student details are fetched");

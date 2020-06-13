@@ -1,11 +1,15 @@
 package com.flipkart.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 
+import com.flipkart.dao.CatalogDao;
+import com.flipkart.dao.CatalogDaoImpl;
 import com.flipkart.dao.ProfessorDao;
 import com.flipkart.dao.ProfessorDaoImpl;
+import com.flipkart.model.Course;
 import com.flipkart.model.Student;
 
 public class ProfessorOperation implements ProfessorInterface{
@@ -15,9 +19,14 @@ public class ProfessorOperation implements ProfessorInterface{
 	public void viewEnrolledStudents(int courseid) {
 		// TODO Auto-generated method stub
 
-		List<Integer> list=professordao.listEnrolledStudents(courseid);
-		list.forEach(student->logger.info("student enrolled username "+student));
-
+		List<Student> list=professordao.listEnrolledStudents(courseid);
+		if(list.size()==0) {
+			logger.info("No students enrolled in this course or invalid course id");
+		}
+		else {
+			logger.info(String.format("%1$10s %2$10s","Student Username","Student Name"));
+			list.forEach(student->logger.info(String.format("%1$10s %2$10s",student.getUsername(),student.getStudentname())));
+		}
 	}
 
 	@Override
@@ -33,12 +42,24 @@ public class ProfessorOperation implements ProfessorInterface{
 
 	@Override
 	public void chooseCourse(String professorusername,int courseid) {
-		// TODO Auto-generated method stub
+		
 		if(professordao.chooseCourse(professorusername, courseid)) {
-			logger.info("course with courseid "+courseid+" successfully choosen");
+			logger.info("Course with courseid "+courseid+" successfully choosen");
 		}
 		else {
-			logger.error("not able to choose course");
+			logger.error("not able to choose course.Invalid course");
+		}
+	}
+
+	@Override
+	public void viewSelectedCourse(String username) {
+		List<Course> courselist=professordao.viewSelectedCourses(username);
+		if(courselist.size()==0) {
+			logger.info("You have not selected any course for teaching");
+		}
+		else {
+			logger.info(String.format("%1$10s %2$10s %3$10s %4$10s","Course Id","Course Name","Course Schedule","Number of students"));
+			courselist.forEach(list->logger.info(String.format("%1$10s %2$10s %3$10s %4$10s",list.getCourseId(),list.getCourseName(),list.getCourseSchedule(),list.getNumberOfStudents())));
 		}
 	}
 

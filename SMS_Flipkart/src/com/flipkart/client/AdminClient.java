@@ -126,7 +126,7 @@ public class AdminClient {
 		String year=scanner.next();
 		logger.info("enter mobilenumber of student");
 		String mobilenumber=scanner.next();
-		logger.info("enter gender of student");
+		logger.info("enter gender of student(m for male/f for female)");
 		String gender=scanner.next();
 		adminoperation.addStudent(new Student(username,password,name,address,year,mobilenumber,gender));
 	}
@@ -178,7 +178,7 @@ public class AdminClient {
 		String year = scanner.next();
 		logger.info("enter mobilenumber of student");
 		String mobilenumber = scanner.next();
-		logger.info("enter gender of student");
+		logger.info("enter gender of student(m for male/f for female)");
 		String gender = scanner.next();
 		adminoperation.updateStudent(new Student(username,"",name,address,year,mobilenumber,gender));
 	}

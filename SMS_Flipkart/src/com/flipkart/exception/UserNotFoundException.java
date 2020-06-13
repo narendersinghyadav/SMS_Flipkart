@@ -6,6 +6,6 @@ public class UserNotFoundException extends Exception{
 		this.username=username;
 	}
 	public String getMessage() {
-		return username+" not found";
+		return username+" User not found";
 	}
 }

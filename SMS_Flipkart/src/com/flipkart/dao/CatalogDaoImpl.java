@@ -43,4 +43,23 @@ public class CatalogDaoImpl implements CatalogDao{
 		}
 		return courselist;
 	}
+	@Override
+	public boolean updateNumberOfStudents(int courseid) {
+		// TODO Auto-generated method stub
+		connection=DBUtil.getConnection();
+		try {
+			//list customer statement
+			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.INCREMENT_NUMBER_OF_STUDENTS);
+			statement.setInt(1, courseid);
+			int row=statement.executeUpdate();
+			if(row!=0) {
+				return true;
+			}
+			statement.close();
+
+		}catch(SQLException e) {
+			logger.error(e.getMessage());
+		}
+		return false;
+	}
 }

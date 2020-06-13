@@ -16,9 +16,8 @@ public class StudentClient {
 		Scanner scanner=new Scanner(System.in);
 		logger.info("press 0 for view catalog");
 		logger.info("press 1 for register course");
-		logger.info("press 2 for change schedule");
-		logger.info("press 3 for view grades");
-		logger.info("press 4 for logout");
+		logger.info("press 2 for view grades");
+		logger.info("press 3 for logout");
 		return scanner.nextInt();
 	}
 
@@ -59,14 +58,6 @@ public class StudentClient {
 		}
 	}
 
-	public void changeSchedule(Student student) {
-		Scanner scanner=new Scanner(System.in);
-		logger.info("enter courseid of which you want to change schedule");
-		int courseid=scanner.nextInt();
-		logger.info("enter schedule ");
-		String schedule=scanner.next();
-		studentoperation.chooseCourseSchedule(student, courseid, schedule);
-	}
 	public void viewGrade(Student student) {
 		studentoperation.viewGrade(student);
 	}
@@ -85,17 +76,14 @@ public class StudentClient {
 				registerCourse(student);
 				break;
 			case 2:
-				changeSchedule(student);
-				break;
-			case 3:
 				viewGrade(student);
 				break;
-			case 4:
+			case 3:
 				logger.info("Student logging out");
 				logger.info(LocalDateTime.now()+"/"+LocalDateTime.now().getDayOfWeek());
 
 				break;
 			}
-		}while(choice!=4);
+		}while(choice!=3);
 	}
 }
