@@ -13,12 +13,16 @@ import com.flipkart.model.Course;
 import com.flipkart.model.Professor;
 import com.flipkart.model.Student;
 
+//Operation performed by admin
 public class AdminOperation implements AdminInterface{
+
+	//Logger
 	private Logger logger=Logger.getLogger(AdminOperation.class);
 	AdminDao admindao=new AdminDaoImpl();
+
+	//Add student to database
 	@Override
 	public void addStudent(Student student) {
-		// TODO Auto-generated method stub
 		if(admindao.insertStudent(student)) {
 			logger.info(student.getUsername()+" added successfully");
 		}
@@ -27,9 +31,10 @@ public class AdminOperation implements AdminInterface{
 		}
 	}
 
+	//Delete student from database
 	@Override
 	public void deleteStudent(Student student) {
-		// TODO Auto-generated method stub
+
 		if(admindao.dropStudent(student)) {
 			logger.info(student.getUsername()+" deleted successfully");
 		}
@@ -38,9 +43,10 @@ public class AdminOperation implements AdminInterface{
 		}
 	}
 
+	//Update student details
 	@Override
 	public void updateStudent(Student student) {
-		// TODO Auto-generated method stub
+
 		if(admindao.updateStudent(student)) {
 			logger.info(student.getUsername()+" updated successfully");
 		}
@@ -50,9 +56,10 @@ public class AdminOperation implements AdminInterface{
 
 	}
 
+	//Add professor to database
 	@Override
 	public void addProfessor(Professor professor) {
-		// TODO Auto-generated method stub
+
 		if(admindao.insertProfessor(professor)) {
 			logger.info(professor.getUsername()+" added successfully");
 		}
@@ -61,9 +68,10 @@ public class AdminOperation implements AdminInterface{
 		}
 	}
 
+	//Delete professor
 	@Override
 	public void deleteProfessor(Professor professor) {
-		// TODO Auto-generated method stub
+
 		if(admindao.dropProfessor(professor)) {
 			logger.info(professor.getUsername()+" deleted successfully");
 		}
@@ -72,9 +80,10 @@ public class AdminOperation implements AdminInterface{
 		}
 	}
 
+	//Update professor details
 	@Override
 	public void updateProfessor(Professor professor) {
-		// TODO Auto-generated method stub
+
 		if(admindao.updateProfessor(professor)) {
 			logger.info(professor.getUsername()+" updated successfully");
 		}
@@ -83,9 +92,10 @@ public class AdminOperation implements AdminInterface{
 		}
 	}
 
+	//Add admin to database
 	@Override
 	public void addAdmin(Admin admin) {
-		// TODO Auto-generated method stub
+
 		if(admindao.insertAdmin(admin)) {
 			logger.info(admin.getUsername()+" added successfully");
 		}
@@ -94,9 +104,10 @@ public class AdminOperation implements AdminInterface{
 		}
 	}
 
+	//Delete admin type user from database
 	@Override
 	public void deleteAdmin(Admin admin) {
-		// TODO Auto-generated method stub
+
 		if(admindao.dropAdmin(admin)) {
 			logger.info(admin.getUsername()+" deleted successfully");
 		}
@@ -105,9 +116,10 @@ public class AdminOperation implements AdminInterface{
 		}
 	}
 
+	//Update admin details
 	@Override
 	public void updateAdmin(Admin admin) {
-		// TODO Auto-generated method stub
+
 		if(admindao.updateAdmin(admin)) {
 			logger.info(admin.getUsername()+" updated successfully");
 		}
@@ -116,9 +128,10 @@ public class AdminOperation implements AdminInterface{
 		}
 	}
 
+	//Add course to catalog
 	@Override
 	public void addCourseToDb(Course course) {
-		// TODO Auto-generated method stub
+
 		if(admindao.insertCourseToDb(course)) {
 			logger.info(course.getCourseName()+" course added successfully");
 		}
@@ -127,9 +140,10 @@ public class AdminOperation implements AdminInterface{
 		}
 	}
 
+	//Delete course from catalog
 	@Override
 	public void deleteCourseFromDb(Course course) {
-		// TODO Auto-generated method stub
+	
 		if(admindao.dropCourseFromDb(course)) {
 			logger.info(course.getCourseName()+" course deleted successfully");
 		}
@@ -138,9 +152,10 @@ public class AdminOperation implements AdminInterface{
 		}
 	}
 
+	//Update course details
 	@Override
 	public void updateCourseInDb(Course course) {
-		// TODO Auto-generated method stub
+
 		if(admindao.updateCourseInDb(course)) {
 			logger.info(course.getCourseName()+" updated successfully");
 		}
@@ -149,12 +164,15 @@ public class AdminOperation implements AdminInterface{
 		}
 	}
 
+	//List all students
 	@Override
 	public void listStudent() {
-		// TODO Auto-generated method stub\\\\\
+		
+		//List of all students
 		List<Student> studentlist=admindao.fetchStudent();
 		logger.info(String.format("%1$10s %2$10s %3$10s %4$10s %5$10s","username","name","address","year","mobile number"));
 
+		//Female list.Add Ms. before name using stream
 		List<Student> studentfemale=studentlist
 				.stream()
 				.filter(student->student.getGender().equalsIgnoreCase("f"))
@@ -162,6 +180,7 @@ public class AdminOperation implements AdminInterface{
 				.collect(Collectors.toList());
 		studentfemale.forEach(list->logger.info(String.format("%1$10s %2$10s %3$10s %4$10s %5$10s",list.getUsername(),list.getStudentname(),list.getStudentaddress(),list.getStudentyear(),list.getStudentmobilenumber())));
 
+		//Male students list .Add Mr before name using stream
 		List<Student> studentmale=studentlist
 				.stream()
 				.filter(student->student.getGender().equalsIgnoreCase("m"))

@@ -15,23 +15,27 @@ import com.flipkart.model.Course;
 import com.flipkart.model.Professor;
 import com.flipkart.model.Student;
 import com.flipkart.model.User;
+import com.flipkart.utils.CloseDbConnection;
 import com.flipkart.utils.DBUtil;
 
-public class ProfessorDaoImpl implements ProfessorDao{
+//Professor DAO implementation
+public class ProfessorDaoImpl implements ProfessorDao,CloseDbConnection{
 
 
 	private static Logger logger=Logger.getLogger(ProfessorDao.class);
 	public static Connection connection=null;
 
+	//List of enrolled student by course id
 	@Override
 	public List<Student> listEnrolledStudents(int courseid) {
-		// TODO Auto-generated method stub
+		
+		//get connection
 		connection=DBUtil.getConnection();
 		Student student=null;
 		List<Student> array=new ArrayList<Student> ();
-		//customer list
+		
 		try {
-			//list customer statement
+			//list of students in a particular course
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.LIST_ENROLLED_STUDENTS);
 			statement.setInt(1, courseid);
 			statement.setInt(2, courseid);
@@ -40,7 +44,7 @@ public class ProfessorDaoImpl implements ProfessorDao{
 			ResultSet resultset=statement.executeQuery();
 
 			while(resultset.next()){
-				//Retrieve by column name
+				//Retrieve  user name
 				String username=resultset.getString("username");
 				String name=resultset.getString("name");
 				student=new Student(username);
@@ -48,34 +52,46 @@ public class ProfessorDaoImpl implements ProfessorDao{
 				array.add(student);
 			}
 
+			//close resultset and statement
 			resultset.close();
 			statement.close();
 
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+		}finally {
+			//close connection
+			closeConnection(connection);
 		}
+		//return array of students
 		return array;
 	}
 
+	//Upload grade of a student for a particular course
 	@Override
 	public boolean addGrade(int grade, Student student,int courseid) {
-		// TODO Auto-generated method stub
+		// get connection
 		connection=DBUtil.getConnection();
 		CatalogDao coursedao=new CatalogDaoImpl();
-		// TODO Auto-generated method stub
+		
+		//List of courses
 		List<Course> courselist=coursedao.getCatalog();
 		courselist=courselist.stream().filter(list->list.getCourseId()==courseid).collect(Collectors.toList());
+		
+		//Check validity of course id
 		if(courselist.size()==0) {
 			logger.error("Invalid course id");
 			return false;
 		}
+		
+		//Check validity of student user name
 		StudentDao studentdao=new StudentDaoImpl();
 		Student studentinfo=studentdao.getStudentInfo(student.getUsername(), student.getPassword());
 		if(studentinfo==null) {
 			logger.error("Invalid student username");
 			return false;
 		}
-		//customer list
+		
+		//Upload grades
 		try {
 			//list customer statement
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.ADD_GRADE);
@@ -91,53 +107,59 @@ public class ProfessorDaoImpl implements ProfessorDao{
 
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+		}finally {
+			//close connection
+			closeConnection(connection);
 		}
 		return false;
 	}
 
+	//Choose course for teaching
 	@Override
 	public boolean chooseCourse(String professorusername,int courseid) {
-		// TODO Auto-generated method stub
+		
 		connection=DBUtil.getConnection();
 		CatalogDao coursedao=new CatalogDaoImpl();
-		// TODO Auto-generated method stub
+		
+		// Check validity of course id 
 		List<Course> courselist=coursedao.getCatalog();
 		courselist=courselist.stream().filter(list->list.getCourseId()==courseid).collect(Collectors.toList());
 		if(courselist.size()==0) {
 			return false;
 		}
-		//customer list
+		//choose course for teaching
 		try {
-			//list customer statement
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.CHOOSE_COURSE_FOR_TEACHING);
 			statement.setString(1, professorusername);
 			statement.setInt(2, courseid);
-
 			int row=statement.executeUpdate();
 			if(row!=0) {
 				return true;
 			}
 			statement.close();
-
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+		}finally {
+			//close connection
+			closeConnection(connection);
 		}
 		return false;
 	}
 
+	//View selected course for teaching
 	@Override
 	public List<Course> viewSelectedCourses(String username) {
 		connection=DBUtil.getConnection();
 		List<Course> array=new ArrayList<Course>();
-		//customer list
+		
 		try {
-			//list customer statement
+			//list courses teach by professor himself
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.LIST_COURSES_BY_USERNAME);
 			statement.setString(1,username);;
 			ResultSet resultset=statement.executeQuery();
 
 			while(resultset.next()){
-				//Retrieve by column name
+				//Retrieve course details
 				Course course =new Course(resultset.getInt("courseid"),resultset.getString("coursename"),resultset.getString("courseschedule"),resultset.getInt("numberofStudents"));
 				array.add(course);
 			}
@@ -146,7 +168,11 @@ public class ProfessorDaoImpl implements ProfessorDao{
 			statement.close();
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+		}finally {
+			//close connection
+			closeConnection(connection);
 		}
+		//Return array of courses
 		return array;
 	}
 		

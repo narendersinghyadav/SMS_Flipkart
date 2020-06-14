@@ -16,24 +16,27 @@ import com.flipkart.model.Course;
 import com.flipkart.model.Professor;
 import com.flipkart.model.Student;
 import com.flipkart.model.User;
+import com.flipkart.utils.CloseDbConnection;
 import com.flipkart.utils.DBUtil;
 
-public class AdminDaoImpl implements AdminDao{
+//AdminDao implementation
+public class AdminDaoImpl implements AdminDao,CloseDbConnection{
 
 	private static Logger logger=Logger.getLogger(AdminDaoImpl.class);
 	public static Connection connection=null;
 	UserDao userdao=new UserDaoImpl();
 
+	//Add student to student table
 	@Override
 	public boolean insertStudent(Student student) {
-		// TODO Auto-generated method stub
+		
 		connection=DBUtil.getConnection();
 		User user=new User(student.getUsername(),student.getPassword(),RoleConstants.STUDENT);
-		//customer list
+		
 		try {
-			//list customer statement
-
+			//Before adding student to student table, student is added to user table
 			userdao.addUser(user);
+			//Prepare sql statement
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.ADD_STUDENT);
 			statement.setString(1, student.getUsername());
 			statement.setString(2, student.getStudentname());
@@ -41,6 +44,7 @@ public class AdminDaoImpl implements AdminDao{
 			statement.setString(4, student.getStudentyear());
 			statement.setString(5, student.getStudentmobilenumber());
 			statement.setString(6,student.getGender());
+			//execute statement
 			int row=statement.executeUpdate();
 			if(row!=0) {
 				return true;
@@ -49,18 +53,24 @@ public class AdminDaoImpl implements AdminDao{
 
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+		}finally {
+			//Closing database connection
+			closeConnection(connection);
 		}
 		return false;
 	}
 
+	//Delete student from student table
 	@Override
 	public boolean dropStudent(Student student) {
-		// TODO Auto-generated method stub
+		
 		connection=DBUtil.getConnection();
 		User user=new User(student.getUsername(),student.getPassword(),student.getRole());
-		//customer list
+		
 		try {
+			//Delete student entry from user table
 			userdao.deleteUser(user);
+			//Prepare sql query for deleting student
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.DELETE_STUDENT);
 			statement.setString(1, student.getUsername());
 			int row=statement.executeUpdate();
@@ -71,20 +81,22 @@ public class AdminDaoImpl implements AdminDao{
 
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+		}finally {
+			//Closing database connection
+			closeConnection(connection);
 		}
 		return false;
-
 	}
 
+	//Update student info in student table
 	@Override
 	public boolean updateStudent(Student student) {
-		// TODO Auto-generated method stub
+		
 		connection=DBUtil.getConnection();
 
-		//customer list
+		
 		try {
-			//list customer statement
-
+			//Prepare update query
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.UPDATE_STUDENT);
 			statement.setString(6, student.getUsername());
 			statement.setString(1, student.getStudentname());
@@ -93,6 +105,7 @@ public class AdminDaoImpl implements AdminDao{
 			statement.setString(4, student.getStudentmobilenumber());
 			statement.setString(5,student.getGender());
 			int row=statement.executeUpdate();
+			//If updated
 			if(row!=0) {
 				return true;
 			}
@@ -100,19 +113,22 @@ public class AdminDaoImpl implements AdminDao{
 
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+		}finally {
+			//close connection
+			closeConnection(connection);
 		}
 		return false;
-
 	}
 
+	//Insert professor info in professor table
 	@Override
 	public boolean insertProfessor(Professor professor) {
-		// TODO Auto-generated method stub
+		
 		connection=DBUtil.getConnection();
 		User user=new User(professor.getUsername(),professor.getPassword(),RoleConstants.PROFESSOR);
-		//customer list
+		
 		try {
-			//list customer statement
+			//Insert professor info in user table--info like username,password and role
 			userdao.addUser(user);
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.ADD_PROFESSOR);
 			statement.setString(1, professor.getUsername());
@@ -127,44 +143,49 @@ public class AdminDaoImpl implements AdminDao{
 
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+		}finally {
+			//Close connection
+			closeConnection(connection);
 		}
 		return false;
 
 	}
 
+	//Delete professor from database
 	@Override
 	public boolean dropProfessor(Professor professor) {
-		// TODO Auto-generated method stub
+		
 		connection=DBUtil.getConnection();
 		User user=new User(professor.getUsername(),professor.getPassword(),professor.getRole());
-		//customer list
+		
 		try {
+			//delete professor from user table
 			userdao.deleteUser(user);
-			//list customer statement
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.DELETE_PROFESSOR);
 			statement.setString(1, professor.getUsername());
+			//Execute query to delete professor
 			int row=statement.executeUpdate();
 			if(row!=0) {
 				return true;
 			}
 			statement.close();
-
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+		}finally {
+			//close connection
+			closeConnection(connection);
 		}
 		return false;
 
 	}
 
+	//Update professor info in professor table except username
 	@Override
 	public boolean updateProfessor(Professor professor) {
-		// TODO Auto-generated method stub
 		connection=DBUtil.getConnection();
 
-		//customer list
 		try {
-			//list customer statement
-
+			//Update query
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.UPDATE_PROFESSOR);
 			statement.setString(4, professor.getUsername());
 			statement.setString(1, professor.getProfessorName());
@@ -178,20 +199,25 @@ public class AdminDaoImpl implements AdminDao{
 
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+		}finally {
+			//Close connection
+			closeConnection(connection);
 		}
 		return false;
 
 	}
 
+	//insert admin in admin table
 	@Override
 	public boolean insertAdmin(Admin admin) {
-		// TODO Auto-generated method stub
+		
 		connection=DBUtil.getConnection();
 		User user=new User(admin.getUsername(),admin.getPassword(),RoleConstants.ADMIN);
-		//customer list
+		
 		try {
+			//Adding admin in user table
 			userdao.addUser(user);
-			//list customer statement
+			//Adding admin in admin table
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.ADD_ADMIN);
 			statement.setString(1, admin.getUsername());
 			statement.setString(2, admin.getAdminName());
@@ -202,22 +228,26 @@ public class AdminDaoImpl implements AdminDao{
 				return true;
 			}
 			statement.close();
-
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+		}finally {
+			//Close connection
+			closeConnection(connection);
 		}
 		return false;
 	}
 
+	//Delete Admin from database
 	@Override
 	public boolean dropAdmin(Admin admin) {
-		// TODO Auto-generated method stub
+		
 		connection=DBUtil.getConnection();
 		User user=new User(admin.getUsername(),admin.getPassword(),admin.getRole());
-		//customer list
+
 		try {
-			//list customer statement
+			//Delete admin from user table
 			userdao.deleteUser(user);
+			//Delete admin from admin table
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.DELETE_ADMIN);
 			statement.setString(1, admin.getUsername());
 			int row=statement.executeUpdate();
@@ -228,19 +258,21 @@ public class AdminDaoImpl implements AdminDao{
 
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+		}finally {
+			//Close connection to database
+			closeConnection(connection);
 		}
 		return false;
 	}
 
+	//Update admin info in admin table
 	@Override
 	public boolean updateAdmin(Admin admin) {
-		// TODO Auto-generated method stub
+		
 		connection=DBUtil.getConnection();
-
-		//customer list
+		
 		try {
-			//list customer statement
-
+			//Update query for admin info in admin table
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.UPDATE_ADMIN);
 			statement.setString(4, admin.getUsername());
 			statement.setString(1, admin.getAdminName());
@@ -250,23 +282,25 @@ public class AdminDaoImpl implements AdminDao{
 			if(row!=0) {
 				return true;
 			}
+			//statement close
 			statement.close();
-
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+		}finally {
+			//Close connection
+			closeConnection(connection);
 		}
 		return false;
 	}
 
+	//Insert course details in catalog table
 	@Override
 	public boolean insertCourseToDb(Course course) {
-		// TODO Auto-generated method stub
+		
 		connection=DBUtil.getConnection();
-
-		//customer list
+		
 		try {
-			//list customer statement
-
+			//adding course to catalog table
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.ADD_COURSE_TO_DB);
 			statement.setInt(1, course.getCourseId());
 			statement.setString(2, course.getCourseName());
@@ -280,19 +314,21 @@ public class AdminDaoImpl implements AdminDao{
 
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+		}finally {
+			//close connection
+			closeConnection(connection);
 		}
 		return false;
 	}
 
+	//Delete course form catalog table using course id
 	@Override
 	public boolean dropCourseFromDb(Course course) {
-		// TODO Auto-generated method stub
+		
 		connection=DBUtil.getConnection();
-
-		//customer list
+		
 		try {
-			//list customer statement
-
+			//Delete query for delete course entry using course id
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.DELETE_COURSE_TO_DB);
 			statement.setInt(1, course.getCourseId());
 			int row=statement.executeUpdate();
@@ -300,22 +336,22 @@ public class AdminDaoImpl implements AdminDao{
 				return true;
 			}
 			statement.close();
-
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+		}finally {
+			//close connection
+			closeConnection(connection);
 		}
 		return false;
 	}
 
+	//Update  course details usinf course id
 	@Override
 	public boolean updateCourseInDb(Course course) {
-		// TODO Auto-generated method stub
+		
 		connection=DBUtil.getConnection();
-
-		//customer list
 		try {
-			//list customer statement
-
+			//Update query for updating course details like name,course schedule,number of students
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.UPDATE_COURSE_TO_DB);
 			statement.setInt(4, course.getCourseId());
 			statement.setString(1, course.getCourseName());
@@ -329,25 +365,29 @@ public class AdminDaoImpl implements AdminDao{
 
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+		}finally {
+			closeConnection(connection);
 		}
 		return false;
 
 	}
 
+	//Fetch list of all students present in db
 	@Override
 	public List<Student> fetchStudent() {
-		// TODO Auto-generated method stub
+		
 		connection=DBUtil.getConnection();
 		List<Student> studentlist=new ArrayList<Student>();
 		Student student=null;
+		
 		try {
-			//list customer statement
+			//List student query
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.LIST_STUDENT);
 			ResultSet resultset=statement.executeQuery();
-
 			while(resultset.next()){
-				//Retrieve by column name
+				//Retrieve by column names
 				student=new Student(resultset.getString("username")," ",resultset.getString("name"),resultset.getString("address"),resultset.getString("year"),resultset.getString("mobilenumber"),resultset.getString("gender"));
+				//Adding student object retrieved to student array
 				studentlist.add(student);
 			}
 
@@ -356,7 +396,11 @@ public class AdminDaoImpl implements AdminDao{
 
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+		}finally {
+			//close connection
+			closeConnection(connection);
 		}
+		//Returning list of students
 		return studentlist;
 	}
 

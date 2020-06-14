@@ -1,11 +1,15 @@
 package com.flipkart.model;
 
+//Course class model
 public class Course {
+	
+	//Properties
 	private int courseId;
 	private String courseName;
 	private String courseSchedule;
 	private int numberOfStudents;
-
+	
+	//Constructor
 	public Course(int courseId,String courseName,String courseSchedule,int numberofstudents) {
 		this.courseId=courseId;
 		this.courseName=courseName;
@@ -13,6 +17,7 @@ public class Course {
 		this.numberOfStudents=numberofstudents;
 	}
 
+	//Getter and Setter
 	public int getNumberOfStudents() {
 		return numberOfStudents;
 	}

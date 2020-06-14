@@ -12,13 +12,16 @@ import com.flipkart.dao.ProfessorDaoImpl;
 import com.flipkart.model.Course;
 import com.flipkart.model.Student;
 
+//Operation performed by professor
 public class ProfessorOperation implements ProfessorInterface{
 	private Logger logger =Logger.getLogger(ProfessorOperation.class);
 	ProfessorDao professordao=new ProfessorDaoImpl();
+
+	//view enrolled students in a particular course
 	@Override
 	public void viewEnrolledStudents(int courseid) {
-		// TODO Auto-generated method stub
 
+		//Student list
 		List<Student> list=professordao.listEnrolledStudents(courseid);
 		if(list.size()==0) {
 			logger.info("No students enrolled in this course or invalid course id");
@@ -29,20 +32,23 @@ public class ProfessorOperation implements ProfessorInterface{
 		}
 	}
 
+	//Upload grade by professor
 	@Override
 	public void updateGrade(int grade, Student student,int courseid) {
-		// TODO Auto-generated method stub
+		//Successfully uploaded
 		if(professordao.addGrade(grade, student, courseid)) {
 			logger.info("grades for student "+student.getUsername()+" updated");
 		}
+		//Uploading failed
 		else {
 			logger.error("not updated");
 		}
 	}
 
+	//Choose course for teaching
 	@Override
 	public void chooseCourse(String professorusername,int courseid) {
-		
+
 		if(professordao.chooseCourse(professorusername, courseid)) {
 			logger.info("Course with courseid "+courseid+" successfully choosen");
 		}
@@ -51,6 +57,7 @@ public class ProfessorOperation implements ProfessorInterface{
 		}
 	}
 
+	//View courses selected by professor himself.
 	@Override
 	public void viewSelectedCourse(String username) {
 		List<Course> courselist=professordao.viewSelectedCourses(username);

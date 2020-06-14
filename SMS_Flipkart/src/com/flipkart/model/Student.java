@@ -1,5 +1,5 @@
 package com.flipkart.model;
-//Student class
+//Student class inherit user class
 public class Student extends User{
 
 	private String studentName;

@@ -1,6 +1,8 @@
 package com.flipkart.model;
 
+//Grade model class
 public class Grades {
+	//Grade of four courses
 	private int course1grade;
 	private int course2grade;
 	private int course3grade;

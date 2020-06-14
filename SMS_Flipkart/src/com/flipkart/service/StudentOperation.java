@@ -1,6 +1,7 @@
 package com.flipkart.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,44 +14,51 @@ import com.flipkart.dao.StudentDaoImpl;
 import com.flipkart.model.Course;
 import com.flipkart.model.Student;
 
+//Operation by students
 public class StudentOperation implements  StudentInterface{
 	private Logger logger=Logger.getLogger(StudentOperation.class);
 	StudentDao studentdao =new StudentDaoImpl();
+	
+	//Add course during registration
 	@Override
 	public void addCourses(Student student,int courseid1, int courseid2, int courseid3, int courseid4) {
-		// TODO Auto-generated method stub
+		
+		//Fetch course id of all courses present in catalog
 		CatalogDao coursedao=new CatalogDaoImpl();
-		// TODO Auto-generated method stub
 		List<Course> courselist=coursedao.getCatalog();
 		List<Integer> courseidlist=new ArrayList<Integer>();
 		courselist.forEach(course->courseidlist.add(course.getCourseId()));
 		
+		//If any course id is not present in catalog
 		if(!(courseidlist.contains(courseid1) && courseidlist.contains(courseid2) && courseidlist.contains(courseid3)&& courseidlist.contains(courseid4))){
 			logger.error("Invalid course id");
 		}
+		//Add course
 		else if(studentdao.addCourse(student, courseid1, courseid2, courseid3, courseid4)) {
-			logger.info("courses successfully added");
+			logger.info("Courses successfully added");
 		}
 		else {
-			logger.error("please add again all courses");
+			logger.error("Please add again all courses");
 		}
 
 	}
 
+	//Update courses registered by student
 	@Override
 	public void changeCourse(Student student,int courseid1,int courseid2,int courseid3,int courseid4) {
-		// TODO Auto-generated method stub
+		
 		if(studentdao.updateCourse(student, courseid1, courseid2, courseid3, courseid4)) {
-			logger.info("courses successfully updated");
+			logger.info("Courses successfully updated");
 		}
 		else {
-			logger.error("please update again");
+			logger.error("Please update again.You have not added courses");
 		}
 	}
 
+	//View catalog of courses
 	@Override
 	public void viewCatalog() {
-		// TODO Auto-generated method stub
+		//List all courses
 		CatalogDao catalog =new CatalogDaoImpl();
 		List<Course> list=catalog.getCatalog();
 		logger.info(String.format("%1$10s %2$10s %3$10s","Course Id","Course Name","Course Schedule"));
@@ -59,21 +67,37 @@ public class StudentOperation implements  StudentInterface{
 	}
 
 
+	//View grades given by professor
 	@Override
 	public void viewGrade(Student student) {
-		// TODO Auto-generated method stub
 		StudentDaoImpl studentdao=new StudentDaoImpl();
-		student=studentdao.listGrade(student);
-		logger.info("course grades are:"+student.getCourse1grade()+" "+student.getCourse2grade()+" "+student.getCourse3grade()+" "+student.getCourse4grade());
+		HashMap<Integer,Integer> grades=studentdao.listGrade(student);
+		logger.info(String.format("%1$10s %2$10s","Course ID","Course Grade"));
+		//Show course id with grades
+		grades.forEach((id,grade)->logger.info(String.format("%1$10s %2$10s",id,grade)));
 	}
 
+	//Pay fees
 	@Override
 	public void payFees() {
 		logger.info("fees payment complete");
 	}
+	
+	//Get own details
 	public Student getStudentDetails(String username,String password) {
 		logger.info("Student details are fetched");
 		return studentdao.getStudentInfo(username, password);
+	}
+
+	//View added courses for registration
+	@Override
+	public void viewSelectedCourses(String username) {
+		
+		//List of courses added
+		List<Integer> courseidlist=studentdao.listSelectedCourses(username);
+		logger.info("Course Id of selected courses");
+		logger.info(courseidlist);
+		
 	}
 
 }

@@ -10,13 +10,14 @@ import com.flipkart.exception.IncorrectPasswordException;
 import com.flipkart.exception.UserNotFoundException;
 import com.flipkart.service.CheckIdentity;
 
+// Functionality related to user
 public class UserClient {
 	private static Logger logger=Logger.getLogger(UserClient.class);
-
+	
+	//common login portal
 	public static void main(String args[]) {
 		String username;
 		String password;
-		//input
 		Scanner scanner=new Scanner(System.in);
 		while(true) {
 			logger.info("**************");
@@ -52,7 +53,6 @@ public class UserClient {
 					break;
 				}
 			} catch (IncorrectPasswordException | UserNotFoundException e) {
-				// TODO Auto-generated catch block
 				logger.error(e.getMessage());
 			}
 		}

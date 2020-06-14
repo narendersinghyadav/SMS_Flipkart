@@ -8,9 +8,13 @@ import com.flipkart.dao.CatalogDaoImpl;
 import com.flipkart.dao.UserDaoImpl;
 import com.flipkart.model.Course;
 
+//Course catalog class
 public class CourseCatalog {
+	
 	CatalogDaoImpl coursedao=new CatalogDaoImpl();
 	Logger logger=Logger.getLogger(CourseCatalog.class);
+	
+	//Show list of courses present in catalog
 	public void SearchValidCourse(){
 		List<Course> courselist=coursedao.getCatalog();
 		logger.info(String.format("%1$10s %2$10s %3$10s %4$10s","Course Id","Course Name","Course Schedule","Number of students"));

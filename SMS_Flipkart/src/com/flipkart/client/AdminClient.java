@@ -28,30 +28,31 @@ public class AdminClient {
 			logger.info("************************");
 			logger.info("Welcome to admin portal");
 			logger.info("************************");
-			logger.info("press 0 for adding student");
-			logger.info("press 1 for adding professor");
-			logger.info("press 2 for adding admin");
-			logger.info("press 3 for update student");
-			logger.info("press 4 for update professor");
-			logger.info("press 5 for update admin");
-			logger.info("press 6 for delete student");
-			logger.info("press 7 for delete professor");
-			logger.info("press 8 for delete admin");
-			logger.info("press 9 to add course to catalog");
-			logger.info("press 10 to update course in catalog");
-			logger.info("press 11 to delete course from catalog");
-			logger.info("press 12 to view student details");
-			logger.info("press 13 to view Courses");
-			logger.info("press 14 to logout");
+			logger.info("Press 0 for adding student");
+			logger.info("Press 1 for adding professor");
+			logger.info("Press 2 for adding admin");
+			logger.info("Press 3 for update student");
+			logger.info("Press 4 for update professor");
+			logger.info("Press 5 for update admin");
+			logger.info("Press 6 for delete student");
+			logger.info("Press 7 for delete professor");
+			logger.info("Press 8 for delete admin");
+			logger.info("Press 9 to add course to catalog");
+			logger.info("Press 10 to update course in catalog");
+			logger.info("Press 11 to delete course from catalog");
+			logger.info("Press 12 to view student details");
+			logger.info("Press 13 to view Courses");
+			logger.info("Press 14 to logout");
 
 			choice=scanner.nextInt();
 			switch(choice) {
 
 			case 0:
-
+				//add student
 				addStudent();
 				break;
 			case 1:
+				//Add professsor
 				addProfessor();
 				break;
 			case 2:
@@ -91,11 +92,11 @@ public class AdminClient {
 				updateCourse();
 				break;
 			case 11:
-				//Delete course
+				//Delete course from catalog
 				deleteCourse();
 				break;
 			case 12:
-				//List student
+				//List all student
 				viewAllStudents();
 				break;
 			case 13:
@@ -113,20 +114,20 @@ public class AdminClient {
 
 	// Add student
 	public void addStudent() {
-		logger.info("adding student");
-		logger.info("enter username for student");
+		logger.info("Adding student");
+		logger.info("Enter username for student");
 		String username=scanner.next();
-		logger.info("enter password for student");
+		logger.info("Enter password for student");
 		String password=scanner.next();
-		logger.info("enter name of student");
+		logger.info("Enter name of student");
 		String name=scanner.next();
-		logger.info("enter address of student");
+		logger.info("Enter address of student");
 		String address=scanner.next();
-		logger.info("enter year of student");
+		logger.info("Enter year of student");
 		String year=scanner.next();
-		logger.info("enter mobilenumber of student");
+		logger.info("Enter mobilenumber of student");
 		String mobilenumber=scanner.next();
-		logger.info("enter gender of student(m for male/f for female)");
+		logger.info("Enter gender of student(m for male/f for female)");
 		String gender=scanner.next();
 		adminoperation.addStudent(new Student(username,password,name,address,year,mobilenumber,gender));
 	}
@@ -134,32 +135,32 @@ public class AdminClient {
 	//Add professor
 	public void addProfessor() {
 
-		logger.info("adding professor");
-		logger.info("enter username for professor");
+		logger.info("Adding professor");
+		logger.info("Enter username for professor");
 		String username=scanner.next();
-		logger.info("enter password for professor");
+		logger.info("Enter password for professor");
 		String password=scanner.next();
-		logger.info("enter name of professor");
+		logger.info("Enter name of professor");
 		String name=scanner.next();
-		logger.info("enter address of professor");
+		logger.info("Enter address of professor");
 		String address=scanner.next();
-		logger.info("enter mobilenumber of professor");
+		logger.info("Enter mobilenumber of professor");
 		String mobilenumber=scanner.next();
 		adminoperation.addProfessor(new Professor(username,password,name,address,mobilenumber));
 	}
 
 	//Add admin
 	public void addAdmin() {
-		logger.info("adding admin");
-		logger.info("enter username for admin");
+		logger.info("Adding admin");
+		logger.info("Enter username for admin");
 		String username=scanner.next();
-		logger.info("enter password for admin");
+		logger.info("Enter password for admin");
 		String password = scanner.next();
-		logger.info("enter name of admin");
+		logger.info("Enter name of admin");
 		String name = scanner.next();
-		logger.info("enter address of admin");
+		logger.info("Enter address of admin");
 		String address = scanner.next();
-		logger.info("enter mobilenumber of admin");
+		logger.info("Enter mobilenumber of admin");
 		String mobilenumber = scanner.next();
 		adminoperation.addAdmin(new Admin(username,password,name,address,mobilenumber));
 	}
@@ -167,18 +168,18 @@ public class AdminClient {
 	//Update Student Info
 	public void updateStudent() {
 
-		logger.info("updating  student");
-		logger.info("enter username for student");
+		logger.info("Updating  student");
+		logger.info("Enter username for student");
 		String username = scanner.next();
-		logger.info("enter name of student");
+		logger.info("Enter name of student");
 		String name = scanner.next();
-		logger.info("enter address of student");
+		logger.info("Enter address of student");
 		String address = scanner.next();
-		logger.info("enter year of student");
+		logger.info("Enter year of student");
 		String year = scanner.next();
-		logger.info("enter mobilenumber of student");
+		logger.info("Enter mobilenumber of student");
 		String mobilenumber = scanner.next();
-		logger.info("enter gender of student(m for male/f for female)");
+		logger.info("Enter gender of student(m for male/f for female)");
 		String gender = scanner.next();
 		adminoperation.updateStudent(new Student(username,"",name,address,year,mobilenumber,gender));
 	}
@@ -186,14 +187,14 @@ public class AdminClient {
 	//Update Professor Info
 	public void updateProfessor() {
 
-		logger.info("updating professor");
-		logger.info("enter username for professor");
+		logger.info("Updating professor");
+		logger.info("Enter username for professor");
 		String username = scanner.next();
-		logger.info("enter name of professor");
+		logger.info("Enter name of professor");
 		String name = scanner.next();
-		logger.info("enter address of professor");
+		logger.info("Enter address of professor");
 		String address = scanner.next();
-		logger.info("enter mobilenumber of professor");
+		logger.info("Enter mobilenumber of professor");
 		String mobilenumber = scanner.next();
 		adminoperation.updateProfessor(new Professor(username,"",name,address,mobilenumber));
 	}
@@ -201,73 +202,73 @@ public class AdminClient {
 	//Update admin Info
 	public void updateAdmin() {
 
-		logger.info("updating admin");
-		logger.info("enter username for admin");
+		logger.info("Updating admin");
+		logger.info("Enter username for admin");
 		String username = scanner.next();
-		logger.info("enter name of admin");
+		logger.info("Enter name of admin");
 		String name = scanner.next();
-		logger.info("enter address of admin");
+		logger.info("Enter address of admin");
 		String address = scanner.next();
-		logger.info("enter mobilenumber of admin");
+		logger.info("Enter mobilenumber of admin");
 		String mobilenumber = scanner.next();
 		adminoperation.updateAdmin(new Admin(username,"",name,address,mobilenumber));
 	}
 
 	//Delete student from database
 	public void deleteStudent() {
-		logger.info("deleting student");
-		logger.info("enter username of student");
+		logger.info("Deleting student");
+		logger.info("Enter username of student");
 		adminoperation.deleteStudent(new Student(scanner.next()));
 	}
 
 	//Delete Professor
 	public void deleteProfessor() {
 
-		logger.info("deleting professor");
-		logger.info("enter username of professor");
+		logger.info("Deleting professor");
+		logger.info("Enter username of professor");
 		adminoperation.deleteProfessor(new Professor(scanner.next()));
 	}
 
 	//Delete admin
 	public void deleteAdmin() {
-		logger.info("deleting admin");
-		logger.info("enter username of admin");
+		logger.info("Deleting admin");
+		logger.info("Enter username of admin");
 		adminoperation.deleteAdmin(new Admin(scanner.next()));
 	}
 
 	//Add courses to catalog
 	public void addCourse() {
-		logger.info("add course to catalog");
-		logger.info("enter course id ");
+		logger.info("Add course to catalog");
+		logger.info("Enter course id ");
 		int courseid=scanner.nextInt();
-		logger.info("enter course name");
+		logger.info("Enter course name");
 		String coursename=scanner.next();
-		logger.info("enter course schedule");
+		logger.info("Enter course schedule");
 		String courseschedule=scanner.next();
 		adminoperation.addCourseToDb(new Course(courseid,coursename,courseschedule,0));
 	}
 
 	//Update course details
 	public void updateCourse() {
-		logger.info("update course to catalog");
-		logger.info("enter course id ");
+		logger.info("Update course to catalog");
+		logger.info("Enter course id ");
 		int courseid = scanner.nextInt();
-		logger.info("enter course name");
+		logger.info("Enter course name");
 		String coursename = scanner.next();
-		logger.info("enter course schedule");
+		logger.info("Enter course schedule");
 		String courseschedule = scanner.next();
 		adminoperation.updateCourseInDb(new Course(courseid,coursename,courseschedule,0));
 	}
 
-	//Delete course
+	//Delete course from catalog
 	public void deleteCourse() {
-		logger.info("deleteing course from catalog");
-		logger.info("enter courseid");
+		logger.info("Deleteing course from catalog");
+		logger.info("Enter courseid");
 		int courseid = scanner.nextInt();
 		adminoperation.deleteCourseFromDb(new Course(courseid,"","",0));
 	}
 
-	//List student
+	//List all student
 	public void viewAllStudents() {
 		logger.info("Listing students");
 		adminoperation.listStudent();

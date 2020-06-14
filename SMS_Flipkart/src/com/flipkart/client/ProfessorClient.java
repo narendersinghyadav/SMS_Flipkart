@@ -23,12 +23,12 @@ public class ProfessorClient {
 		int choice;
 
 		do {
-			logger.info("enter 0 for getting course list");
-			logger.info("enter 1 for getting list of enrolled students");
-			logger.info("enter 2 for selecting course for teaching");
-			logger.info("enter 3 for uploading grades");
-			logger.info("enter 4 to view your selected courses for teaching");
-			logger.info("enter 5 for logout");
+			logger.info("Enter 0 for getting course list");
+			logger.info("Enter 1 for getting list of enrolled students");
+			logger.info("Enter 2 for selecting course for teaching");
+			logger.info("Enter 3 for uploading grades");
+			logger.info("Enter 4 to view your selected courses for teaching");
+			logger.info("Enter 5 for logout");
 			choice=scanner.nextInt();
 			switch(choice){
 			case 0:
@@ -36,7 +36,7 @@ public class ProfessorClient {
 				viewCourses();
 				break;
 			case 1:
-				//View enrolled students
+				//View enrolled students by course id
 				viewEnrolledStudent();
 				break;
 			case 2:
@@ -48,11 +48,12 @@ public class ProfessorClient {
 				uploadGrade();
 				break;
 			case 4:
+				//View courses selected for teaching
 				selectedCourses(username);
 				break;
 			case 5:
 				//Professor logout
-				logger.info("professor logging out");
+				logger.info("Professor logging out");
 				logger.info(LocalDateTime.now()+"/"+LocalDateTime.now().getDayOfWeek());
 				break;
 			}
@@ -66,11 +67,11 @@ public class ProfessorClient {
 		studentoperation.viewCatalog();
 	}
 
-	//View enrolled students
+	//View enrolled students using course id
 	public void viewEnrolledStudent() {
 
 		logger.info("Viewing enrolled students list");
-		logger.info("enter courseid of which you want students:");
+		logger.info("Enter courseid of which you want students:");
 		int courseid=scanner.nextInt();
 		professoroperation.viewEnrolledStudents(courseid);
 	}
@@ -78,22 +79,23 @@ public class ProfessorClient {
 	//Choose course for teaching
 	public void chooseCourse(String username) {	
 		logger.info("Choose course for teaching");
-		logger.info("enter course id for teaching");
+		logger.info("Enter course id for teaching");
 		int courseid = scanner.nextInt();
 		professoroperation.chooseCourse(username,courseid);
 	}
 
 	//Professor can upload grades
 	public void uploadGrade() {
-		logger.info("uploading grades");
-		logger.info("enter student username for grade updation");
+		logger.info("Uploading grades");
+		logger.info("Enter student username for grade updation");
 		String student=scanner.next();
-		logger.info("enter course id ");
+		logger.info("Enter course id ");
 		int courseid = scanner.nextInt();
-		logger.info("enter grade ");
+		logger.info("Enter grade ");
 		int grade=scanner.nextInt();
 		professoroperation.updateGrade(grade, new Student(student), courseid);
 	}
+	//View courses selected for teaching
 	public void selectedCourses(String username) {
 		logger.info("Here are your Courses");
 		professoroperation.viewSelectedCourse(username);

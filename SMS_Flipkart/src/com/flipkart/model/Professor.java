@@ -1,9 +1,12 @@
 package com.flipkart.model;
 
+//Professor model class inherit user class
 public class Professor extends User{
 	private String professorName;
 	private String professorAddress;
 	private String professorMobilenumber;
+	
+	//Professor constructor
 	public Professor(String username,String password,String professorName,String professorAddress,String professorMobilenumber) {
 		super(username,password);
 		this.professorName=professorName;
