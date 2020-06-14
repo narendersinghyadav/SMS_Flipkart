@@ -136,7 +136,7 @@ public class AdminOperation implements AdminInterface{
 			logger.info(course.getCourseName()+" course added successfully");
 		}
 		else {
-			logger.error(course.getCourseName()+"course not added successfully.Course with courseid already present");
+			logger.error(course.getCourseName()+" course not added successfully.Course with courseid already present");
 		}
 	}
 
@@ -148,7 +148,7 @@ public class AdminOperation implements AdminInterface{
 			logger.info(course.getCourseName()+" course deleted successfully");
 		}
 		else {
-			logger.error(course.getCourseName()+"course not deleted successfully.No course with such course id");
+			logger.error(course.getCourseName()+" course not deleted successfully.No course with such course id");
 		}
 	}
 

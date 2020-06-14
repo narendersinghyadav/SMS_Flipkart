@@ -1,6 +1,7 @@
 package com.flipkart.client;
 
 import java.time.LocalDateTime;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import org.apache.log4j.Logger;
@@ -21,7 +22,7 @@ public class AdminClient {
 	//main function for  admin 
 	public void main() {
 
-
+		try {
 		int choice;
 
 		do {
@@ -110,6 +111,9 @@ public class AdminClient {
 				break;
 			}
 		}while(choice!=14);
+		}catch(InputMismatchException e) {
+			logger.error(e.getMessage()+" enter numerical value only");
+		}
 	}
 
 	// Add student

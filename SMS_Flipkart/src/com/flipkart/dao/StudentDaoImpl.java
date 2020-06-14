@@ -16,6 +16,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import com.flipkart.constant.SQLConstantQueries;
+import com.flipkart.exception.FullCourseNotification;
 import com.flipkart.model.Student;
 import com.flipkart.utils.CloseDbConnection;
 import com.flipkart.utils.DBUtil;
@@ -25,13 +26,13 @@ public class StudentDaoImpl implements StudentDao,CloseDbConnection{
 
 	private static Logger logger=Logger.getLogger(StudentDaoImpl.class);
 	public static Connection connection=null;
-	
+
 	//Insert course in registration table with timestamp
 	@Override
-	public boolean addCourse(Student student, int courseid1, int courseid2, int courseid3, int courseid4) {
-		
+	public boolean addCourse(Student student, int courseid1, int courseid2, int courseid3, int courseid4) throws FullCourseNotification {
+
 		connection=DBUtil.getConnection();
-		
+
 		//Local time
 		LocalTime localtime=LocalTime.now();
 		LocalDate localdate=LocalDate.now();
@@ -43,7 +44,7 @@ public class StudentDaoImpl implements StudentDao,CloseDbConnection{
 		catalogdao.increaseNumberOfStudents(courseid2);
 		catalogdao.increaseNumberOfStudents(courseid3);
 		catalogdao.increaseNumberOfStudents(courseid4);
-		
+
 		try {
 			//add courses in registration table
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.ADD_COURSE_BY_STUDENT);
@@ -70,28 +71,28 @@ public class StudentDaoImpl implements StudentDao,CloseDbConnection{
 
 	//Update courses for registration
 	@Override
-	public boolean updateCourse(Student student,int courseid1,int courseid2,int courseid3,int courseid4) {
+	public boolean updateCourse(Student student,int courseid1,int courseid2,int courseid3,int courseid4) throws FullCourseNotification {
+
 		
-		connection=DBUtil.getConnection();
 		LocalTime localtime=LocalTime.now();
 		LocalDate localdate=LocalDate.now();
 		LocalDateTime localdatetime=LocalDateTime.now();
-		
-		//decrease number of students by 1 of previously selected courses
+
 		CatalogDao catalogdao=new CatalogDaoImpl();
-		StudentDao studentdao=new StudentDaoImpl();
-		List<Integer> courselist=studentdao.listSelectedCourses(student.getUsername());
-		courselist.forEach(courseid->catalogdao.decreaseNumberOfStudents(courseid));
-		
 		//Increase number of students for new courses selected
 		catalogdao.increaseNumberOfStudents(courseid1);
 		catalogdao.increaseNumberOfStudents(courseid2);
 		catalogdao.increaseNumberOfStudents(courseid3);
 		catalogdao.increaseNumberOfStudents(courseid4);
-		
+
+		//decrease number of students by 1 of previously selected courses
+		StudentDao studentdao=new StudentDaoImpl();
+		List<Integer> courselist=studentdao.listSelectedCourses(student.getUsername());
+		courselist.forEach(courseid->catalogdao.decreaseNumberOfStudents(courseid));
+
 		try {
 			//Update details in registration table for student
-			
+			connection=DBUtil.getConnection();
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.UPDATE_COURSE_BY_STUDENT);
 			statement.setInt(1,courseid1);
 			statement.setInt(2,courseid2);
@@ -120,10 +121,10 @@ public class StudentDaoImpl implements StudentDao,CloseDbConnection{
 	//Retrieve grades
 	@Override
 	public HashMap<Integer,Integer> listGrade(Student student) {
-		
+
 		connection=DBUtil.getConnection();
 		HashMap<Integer,Integer> map=new HashMap<Integer,Integer>();
-		
+
 		try {
 			//list of grades of a particular student with course id
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.LIST_GRADE);
@@ -150,14 +151,14 @@ public class StudentDaoImpl implements StudentDao,CloseDbConnection{
 		// Payment done
 
 	}
-	
+
 	//View own details by student
 	@Override
 	public Student getStudentInfo(String username,String password) {
-		
+
 		connection=DBUtil.getConnection();
 		Student student=null;
-		
+
 		try {
 			//get own details 
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.GET_STUDENT_DETAILS);
@@ -165,7 +166,7 @@ public class StudentDaoImpl implements StudentDao,CloseDbConnection{
 			statement.setString(1,username);
 			ResultSet resultset=statement.executeQuery();
 			while(resultset.next()) {
-				
+
 				//Details
 				username=resultset.getString("username");
 				String name=resultset.getString("name");
@@ -189,10 +190,10 @@ public class StudentDaoImpl implements StudentDao,CloseDbConnection{
 	//List of selected courses during registration
 	@Override
 	public List<Integer> listSelectedCourses(String username) {
-	
+
 		connection=DBUtil.getConnection();
 		List<Integer> courses=new ArrayList<Integer>();
-	
+
 		try {
 			//list of selected courses
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.LIST_SELECTED_COURSES);

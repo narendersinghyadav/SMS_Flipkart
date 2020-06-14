@@ -11,6 +11,7 @@ import com.flipkart.dao.CatalogDao;
 import com.flipkart.dao.CatalogDaoImpl;
 import com.flipkart.dao.StudentDao;
 import com.flipkart.dao.StudentDaoImpl;
+import com.flipkart.exception.FullCourseNotification;
 import com.flipkart.model.Course;
 import com.flipkart.model.Student;
 
@@ -30,6 +31,7 @@ public class StudentOperation implements  StudentInterface{
 		courselist.forEach(course->courseidlist.add(course.getCourseId()));
 		
 		//If any course id is not present in catalog
+		try {
 		if(!(courseidlist.contains(courseid1) && courseidlist.contains(courseid2) && courseidlist.contains(courseid3)&& courseidlist.contains(courseid4))){
 			logger.error("Invalid course id");
 		}
@@ -38,7 +40,10 @@ public class StudentOperation implements  StudentInterface{
 			logger.info("Courses successfully added");
 		}
 		else {
-			logger.error("Please add again all courses");
+			logger.error("You have already choosen.If want can update");
+		}
+		}catch (FullCourseNotification e) {
+			e.displayMessage();
 		}
 
 	}
@@ -47,11 +52,24 @@ public class StudentOperation implements  StudentInterface{
 	@Override
 	public void changeCourse(Student student,int courseid1,int courseid2,int courseid3,int courseid4) {
 		
-		if(studentdao.updateCourse(student, courseid1, courseid2, courseid3, courseid4)) {
-			logger.info("Courses successfully updated");
-		}
-		else {
-			logger.error("Please update again.You have not added courses");
+		//Fetch course id of all courses present in catalog
+				CatalogDao coursedao=new CatalogDaoImpl();
+				List<Course> courselist=coursedao.getCatalog();
+				List<Integer> courseidlist=new ArrayList<Integer>();
+				courselist.forEach(course->courseidlist.add(course.getCourseId()));
+				
+		try {
+			if(!(courseidlist.contains(courseid1) && courseidlist.contains(courseid2) && courseidlist.contains(courseid3)&& courseidlist.contains(courseid4))){
+				logger.error("Invalid course id");
+			}
+			else if(studentdao.updateCourse(student, courseid1, courseid2, courseid3, courseid4)) {
+				logger.info("Courses successfully updated");
+			}
+			else {
+				logger.error("Please update again.You have not added courses");
+			}
+		} catch (FullCourseNotification e) {
+			e.displayMessage();
 		}
 	}
 

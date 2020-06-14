@@ -1,6 +1,7 @@
 package com.flipkart.client;
 
 import java.time.LocalDateTime;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import org.apache.log4j.Logger;
@@ -22,7 +23,7 @@ public class StudentClient {
 		Student student=studentoperation.getStudentDetails(username, password);
 		StudentOperation studentoperation=new StudentOperation();
 		int choice;
-		
+		try {
 		do {
 			choice=getChoice();
 			switch(choice) {
@@ -50,6 +51,9 @@ public class StudentClient {
 				break;
 			}
 		}while(choice!=4);
+	}catch(InputMismatchException e) {
+		logger.error(e.getMessage()+" enter numerical value only");
+	}
 	}
 	
 	//Enter choice

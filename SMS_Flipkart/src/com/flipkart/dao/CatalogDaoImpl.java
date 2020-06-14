@@ -10,6 +10,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.flipkart.constant.SQLConstantQueries;
+import com.flipkart.exception.FullCourseNotification;
 import com.flipkart.model.Course;
 import com.flipkart.utils.CloseDbConnection;
 import com.flipkart.utils.DBUtil;
@@ -57,15 +58,15 @@ public class CatalogDaoImpl implements CatalogDao,CloseDbConnection{
 	
 	//increment number of student in a course by 1
 	@Override
-	public boolean increaseNumberOfStudents(int courseid) {
+	public boolean increaseNumberOfStudents(int courseid) throws FullCourseNotification {
 		
 		connection=DBUtil.getConnection();
 		try {
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.INCREMENT_NUMBER_OF_STUDENTS);
 			statement.setInt(1, courseid);
 			int row=statement.executeUpdate();
-			if(row!=0) {
-				return true;
+			if(row==0) {
+				throw new FullCourseNotification(courseid);
 			}
 			statement.close();
 		}catch(SQLException e) {
@@ -74,7 +75,7 @@ public class CatalogDaoImpl implements CatalogDao,CloseDbConnection{
 			//close connection
 			closeConnection(connection);
 		}
-		return false;
+		return true;
 	}
 	
 	//Decrement number of student in a course by 1
@@ -91,9 +92,6 @@ public class CatalogDaoImpl implements CatalogDao,CloseDbConnection{
 			statement.close();
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
-		}finally {
-			//close connection
-			closeConnection(connection);
 		}
 		return false;
 	}

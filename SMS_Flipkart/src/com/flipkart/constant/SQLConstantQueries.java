@@ -7,7 +7,7 @@ public class SQLConstantQueries {
 
 	//CatalogDao queries
 	public static final String LIST_CATALOG="select * from catalog";
-	public static final String INCREMENT_NUMBER_OF_STUDENTS="update catalog set numberofStudents=numberofStudents+1 where courseid=?";
+	public static final String INCREMENT_NUMBER_OF_STUDENTS="update catalog set numberofStudents=numberofStudents+1 where courseid=? and numberofStudents<10";
 	public static final String DECREMENT_NUMBER_OF_STUDENTS = "update catalog set numberofStudents=numberofStudents-1 where courseid=?";
 
 	//StudentDao queries

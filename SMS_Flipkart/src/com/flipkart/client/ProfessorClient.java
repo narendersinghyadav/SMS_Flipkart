@@ -1,6 +1,7 @@
 package com.flipkart.client;
 
 import java.time.LocalDateTime;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import org.apache.log4j.Logger;
 import com.flipkart.model.Student;
@@ -21,7 +22,7 @@ public class ProfessorClient {
 		logger.info("welcome to professor portal");
 		logger.info("****************************");
 		int choice;
-
+		try {
 		do {
 			logger.info("Enter 0 for getting course list");
 			logger.info("Enter 1 for getting list of enrolled students");
@@ -58,6 +59,9 @@ public class ProfessorClient {
 				break;
 			}
 		}while(choice!=5);
+		}catch(InputMismatchException e) {
+			logger.error(e.getMessage()+" enter numerical value only");
+		}
 	}
 
 	//View course list
