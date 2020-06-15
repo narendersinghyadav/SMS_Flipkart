@@ -41,7 +41,8 @@ public class CatalogDaoImpl implements CatalogDao,CloseDbConnection{
 				String coursename=resultset.getString("coursename");
 				String courseschedule=resultset.getString("courseschedule");
 				int numberofstudents=resultset.getInt("numberofStudents");
-				Course course=new Course(courseid,coursename,courseschedule,numberofstudents);
+				int fees=resultset.getInt("fees");
+				Course course=new Course(courseid,coursename,courseschedule,numberofstudents,fees);
 				courselist.add(course);
 			}
 			resultset.close();
@@ -86,13 +87,13 @@ public class CatalogDaoImpl implements CatalogDao,CloseDbConnection{
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.DECREMENT_NUMBER_OF_STUDENTS);
 			statement.setInt(1, courseid);
 			int row=statement.executeUpdate();
-			if(row!=0) {
-				return true;
+			if(row==0) {
+				return false;
 			}
 			statement.close();
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
 		}
-		return false;
+		return true;
 	}
 }

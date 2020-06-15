@@ -20,7 +20,7 @@ public interface StudentInterface {
 	public void viewGrade(Student student);
 	
 	//pay fees
-	public void payFees();
+	public void payFees(String paymentmode,Student student);
 	
 	//get own details 
 	public Student getStudentDetails(String username,String password);

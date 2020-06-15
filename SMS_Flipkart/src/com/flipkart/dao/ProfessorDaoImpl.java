@@ -100,18 +100,19 @@ public class ProfessorDaoImpl implements ProfessorDao,CloseDbConnection{
 			statement.setInt(3, grade);
 
 			int row=statement.executeUpdate();
-			if(row!=0) {
-				return true;
+			if(row==0) {
+				return false;
 			}
 			statement.close();
 
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+			return false;
 		}finally {
 			//close connection
 			closeConnection(connection);
 		}
-		return false;
+		return true;
 	}
 
 	//Choose course for teaching
@@ -133,17 +134,18 @@ public class ProfessorDaoImpl implements ProfessorDao,CloseDbConnection{
 			statement.setString(1, professorusername);
 			statement.setInt(2, courseid);
 			int row=statement.executeUpdate();
-			if(row!=0) {
-				return true;
+			if(row==0) {
+				return false;
 			}
 			statement.close();
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+			return false;
 		}finally {
 			//close connection
 			closeConnection(connection);
 		}
-		return false;
+		return true;
 	}
 
 	//View selected course for teaching
@@ -160,7 +162,7 @@ public class ProfessorDaoImpl implements ProfessorDao,CloseDbConnection{
 
 			while(resultset.next()){
 				//Retrieve course details
-				Course course =new Course(resultset.getInt("courseid"),resultset.getString("coursename"),resultset.getString("courseschedule"),resultset.getInt("numberofStudents"));
+				Course course =new Course(resultset.getInt("courseid"),resultset.getString("coursename"),resultset.getString("courseschedule"),resultset.getInt("numberofStudents"),resultset.getInt("fees"));
 				array.add(course);
 			}
 

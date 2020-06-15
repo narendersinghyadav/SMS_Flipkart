@@ -72,7 +72,6 @@ public class StudentClient {
 		Scanner scanner=new Scanner(System.in);
 		logger.info("Press 0 for add courses");
 		logger.info("Press 1 for update course");
-		logger.info("Press 2 for pay fess");
 		int choice=scanner.nextInt();
 
 		switch(choice) {
@@ -88,6 +87,9 @@ public class StudentClient {
 			int courseid4=scanner.nextInt();
 
 			studentoperation.addCourses(student, courseid1, courseid2, courseid3, courseid4);
+			//fees payment
+			logger.info("Fees payment started");
+			payFees(student);
 			break;
 		//update courses during regisration
 		case 1:
@@ -101,11 +103,8 @@ public class StudentClient {
 			courseid4=scanner.nextInt();
 			studentoperation.changeCourse(student, courseid1, courseid2, courseid3, courseid4);           
 			break;
-		//fees payment
-		case 2:
-			logger.info("Fees payment started");
-			studentoperation.payFees();
 		}
+		
 	}
 
 	//view grades given by professor
@@ -117,6 +116,29 @@ public class StudentClient {
 	private void viewSelectedCourses(String username) {
 		// TODO Auto-generated method stub
 		studentoperation.viewSelectedCourses(username);
+	}
+	
+	public void payFees(Student student) {
+		Scanner scanner=new Scanner(System.in);
+		logger.info("Enter 0 for cash");
+		logger.info("Enter 1 for credit card");
+		logger.info("Enter 2 for net banking");
+		logger.info("Enter 3 for scholarship payment");
+		int choice=scanner.nextInt();
+		switch(choice) {
+		case 0:
+			studentoperation.payFees("cash",student);
+			break;
+		case 1:
+			studentoperation.payFees("credit card",student);
+			break;
+		case 2:
+			studentoperation.payFees("Net banking",student);
+			break;
+		case 3:
+			studentoperation.payFees("Scholarship",student);
+			break;
+		}
 	}
 
 }

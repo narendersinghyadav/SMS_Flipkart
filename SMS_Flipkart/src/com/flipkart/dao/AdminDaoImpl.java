@@ -46,18 +46,19 @@ public class AdminDaoImpl implements AdminDao,CloseDbConnection{
 			statement.setString(6,student.getGender());
 			//execute statement
 			int row=statement.executeUpdate();
-			if(row!=0) {
-				return true;
+			if(row==0) {
+				return false;
 			}
 			statement.close();
 
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+			return false;
 		}finally {
 			//Closing database connection
 			closeConnection(connection);
 		}
-		return false;
+		return true;
 	}
 
 	//Delete student from student table
@@ -65,27 +66,30 @@ public class AdminDaoImpl implements AdminDao,CloseDbConnection{
 	public boolean dropStudent(Student student) {
 		
 		connection=DBUtil.getConnection();
-		User user=new User(student.getUsername(),student.getPassword(),student.getRole());
 		
+		User user=new User(student.getUsername(),student.getPassword(),student.getRole());
 		try {
-			//Delete student entry from user table
-			userdao.deleteUser(user);
+			
 			//Prepare sql query for deleting student
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.DELETE_STUDENT);
 			statement.setString(1, student.getUsername());
 			int row=statement.executeUpdate();
-			if(row!=0) {
-				return true;
+			if(row==0) {
+				
+				return false;
 			}
+			//Delete student entry from user table
+			userdao.deleteUser(user);
 			statement.close();
 
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+			return false;
 		}finally {
 			//Closing database connection
 			closeConnection(connection);
 		}
-		return false;
+		return true;
 	}
 
 	//Update student info in student table
@@ -106,18 +110,19 @@ public class AdminDaoImpl implements AdminDao,CloseDbConnection{
 			statement.setString(5,student.getGender());
 			int row=statement.executeUpdate();
 			//If updated
-			if(row!=0) {
-				return true;
+			if(row==0) {
+				return false;
 			}
 			statement.close();
 
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+			return false;
 		}finally {
 			//close connection
 			closeConnection(connection);
 		}
-		return false;
+		return true;
 	}
 
 	//Insert professor info in professor table
@@ -136,18 +141,19 @@ public class AdminDaoImpl implements AdminDao,CloseDbConnection{
 			statement.setString(3, professor.getProfessorAddress());
 			statement.setString(4,professor.getProfessorMobilenumber());
 			int row=statement.executeUpdate();
-			if(row!=0) {
-				return true;
+			if(row==0) {
+				return false;
 			}
 			statement.close();
 
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+			return false;
 		}finally {
 			//Close connection
 			closeConnection(connection);
 		}
-		return false;
+		return true;
 
 	}
 
@@ -159,23 +165,25 @@ public class AdminDaoImpl implements AdminDao,CloseDbConnection{
 		User user=new User(professor.getUsername(),professor.getPassword(),professor.getRole());
 		
 		try {
-			//delete professor from user table
-			userdao.deleteUser(user);
+			
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.DELETE_PROFESSOR);
 			statement.setString(1, professor.getUsername());
 			//Execute query to delete professor
 			int row=statement.executeUpdate();
-			if(row!=0) {
-				return true;
+			if(row==0) {
+				return false;
 			}
+			//Delete student entry from user table
+			userdao.deleteUser(user);
 			statement.close();
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+			return false;
 		}finally {
 			//close connection
 			closeConnection(connection);
 		}
-		return false;
+		return true;
 
 	}
 
@@ -192,18 +200,19 @@ public class AdminDaoImpl implements AdminDao,CloseDbConnection{
 			statement.setString(2, professor.getProfessorAddress());
 			statement.setString(3, professor.getProfessorMobilenumber());
 			int row=statement.executeUpdate();
-			if(row!=0) {
-				return true;
+			if(row==0) {
+				return false;
 			}
 			statement.close();
 
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+			return false;
 		}finally {
 			//Close connection
 			closeConnection(connection);
 		}
-		return false;
+		return true;
 
 	}
 
@@ -224,17 +233,18 @@ public class AdminDaoImpl implements AdminDao,CloseDbConnection{
 			statement.setString(3, admin.getAdminAddress());
 			statement.setString(4,admin.getAdminMobilenumber());
 			int row=statement.executeUpdate();
-			if(row!=0) {
-				return true;
+			if(row==0) {
+				return false;
 			}
 			statement.close();
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+			return false;
 		}finally {
 			//Close connection
 			closeConnection(connection);
 		}
-		return false;
+		return true;
 	}
 
 	//Delete Admin from database
@@ -245,24 +255,27 @@ public class AdminDaoImpl implements AdminDao,CloseDbConnection{
 		User user=new User(admin.getUsername(),admin.getPassword(),admin.getRole());
 
 		try {
-			//Delete admin from user table
-			userdao.deleteUser(user);
+			
 			//Delete admin from admin table
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.DELETE_ADMIN);
 			statement.setString(1, admin.getUsername());
 			int row=statement.executeUpdate();
-			if(row!=0) {
-				return true;
+			if(row==0) {
+				
+				return false;
 			}
+			//Delete admin from user table
+			userdao.deleteUser(user);
 			statement.close();
 
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+			return false;
 		}finally {
 			//Close connection to database
 			closeConnection(connection);
 		}
-		return false;
+		return true;
 	}
 
 	//Update admin info in admin table
@@ -279,8 +292,8 @@ public class AdminDaoImpl implements AdminDao,CloseDbConnection{
 			statement.setString(2, admin.getAdminAddress());
 			statement.setString(3, admin.getAdminMobilenumber());
 			int row=statement.executeUpdate();
-			if(row!=0) {
-				return true;
+			if(row==0) {
+				return false;
 			}
 			//statement close
 			statement.close();
@@ -290,7 +303,7 @@ public class AdminDaoImpl implements AdminDao,CloseDbConnection{
 			//Close connection
 			closeConnection(connection);
 		}
-		return false;
+		return true;
 	}
 
 	//Insert course details in catalog table
@@ -306,19 +319,21 @@ public class AdminDaoImpl implements AdminDao,CloseDbConnection{
 			statement.setString(2, course.getCourseName());
 			statement.setString(3, course.getCourseSchedule());
 			statement.setInt(4, course.getNumberOfStudents());
+			statement.setInt(5, course.getFees());
 			int row=statement.executeUpdate();
-			if(row!=0) {
-				return true;
+			if(row==0) {
+				return false;
 			}
 			statement.close();
 
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+			return false;
 		}finally {
 			//close connection
 			closeConnection(connection);
 		}
-		return false;
+		return true;
 	}
 
 	//Delete course form catalog table using course id
@@ -332,8 +347,8 @@ public class AdminDaoImpl implements AdminDao,CloseDbConnection{
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.DELETE_COURSE_TO_DB);
 			statement.setInt(1, course.getCourseId());
 			int row=statement.executeUpdate();
-			if(row!=0) {
-				return true;
+			if(row==0) {
+				return false;
 			}
 			statement.close();
 		}catch(SQLException e) {
@@ -342,7 +357,7 @@ public class AdminDaoImpl implements AdminDao,CloseDbConnection{
 			//close connection
 			closeConnection(connection);
 		}
-		return false;
+		return true;
 	}
 
 	//Update  course details usinf course id
@@ -353,22 +368,24 @@ public class AdminDaoImpl implements AdminDao,CloseDbConnection{
 		try {
 			//Update query for updating course details like name,course schedule,number of students
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.UPDATE_COURSE_TO_DB);
-			statement.setInt(4, course.getCourseId());
+			statement.setInt(5, course.getCourseId());
 			statement.setString(1, course.getCourseName());
 			statement.setString(2, course.getCourseSchedule());
 			statement.setInt(3, course.getNumberOfStudents());
+			statement.setInt(4, course.getFees());
 			int row=statement.executeUpdate();
-			if(row!=0) {
-				return true;
+			if(row==0) {
+				return false;
 			}
 			statement.close();
 
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+			return false;
 		}finally {
 			closeConnection(connection);
 		}
-		return false;
+		return true;
 
 	}
 

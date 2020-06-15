@@ -64,18 +64,19 @@ public class UserDaoImpl implements UserDao,CloseDbConnection{
 			statement.setInt(3,user.getRole());
 
 			int row=statement.executeUpdate();
-			if(row!=0) {
-				return true;
+			if(row==0) {
+				return false;
 			}
 			statement.close();
 
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+			return false;
 		}finally {
 			///close connection
 			closeConnection(connection);
 		}
-		return false;
+		return true;
 	}
 	
 	//Delete user from userlogin table
@@ -89,18 +90,19 @@ public class UserDaoImpl implements UserDao,CloseDbConnection{
 			statement.setString(1,user.getUsername());
 
 			int row=statement.executeUpdate();
-			if(row!=0) {
-				return true;
+			if(row==0) {
+				return false;
 			}
 			statement.close();
 
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+			return false;
 		}finally {
 			//Close connection
 			closeConnection(connection);
 		}
-		return false;
+		return true;
 	}
 
 }

@@ -17,7 +17,7 @@ public class CourseCatalog {
 	//Show list of courses present in catalog
 	public void SearchValidCourse(){
 		List<Course> courselist=coursedao.getCatalog();
-		logger.info(String.format("%1$10s %2$10s %3$10s %4$10s","Course Id","Course Name","Course Schedule","Number of students"));
-		courselist.forEach(list->logger.info(String.format("%1$10s %2$10s %3$10s %4$10s",list.getCourseId(),list.getCourseName(),list.getCourseSchedule(),list.getNumberOfStudents())));
+		logger.info(String.format("%1$10s %2$10s %3$10s %4$10s %5$10s","Course Id","Course Name","Course Schedule","Number of students","Fees"));
+		courselist.forEach(list->logger.info(String.format("%1$10s %2$10s %3$10s %4$10s %5$20s",list.getCourseId(),list.getCourseName(),list.getCourseSchedule(),list.getNumberOfStudents(),list.getFees())));
 	}
 }

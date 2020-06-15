@@ -79,8 +79,8 @@ public class StudentOperation implements  StudentInterface{
 		//List all courses
 		CatalogDao catalog =new CatalogDaoImpl();
 		List<Course> list=catalog.getCatalog();
-		logger.info(String.format("%1$10s %2$10s %3$10s","Course Id","Course Name","Course Schedule"));
-		list.forEach(course->logger.info(String.format("%1$10s %2$10s %3$10s",course.getCourseId(),course.getCourseName(),course.getCourseSchedule())));
+		logger.info(String.format("%1$10s %2$10s %3$10s %4$10s","Course Id","Course Name","Course Schedule","Fees"));
+		list.forEach(course->logger.info(String.format("%1$10s %2$10s %3$10s %4$20s",course.getCourseId(),course.getCourseName(),course.getCourseSchedule(),course.getFees())));
 
 	}
 
@@ -97,7 +97,9 @@ public class StudentOperation implements  StudentInterface{
 
 	//Pay fees
 	@Override
-	public void payFees() {
+	public void payFees(String paymentmode,Student student) {
+		StudentDaoImpl studentdao=new StudentDaoImpl();
+		studentdao.payFees(student,paymentmode);
 		logger.info("fees payment complete");
 	}
 	

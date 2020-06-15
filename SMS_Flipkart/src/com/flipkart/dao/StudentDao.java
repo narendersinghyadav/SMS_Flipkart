@@ -24,5 +24,5 @@ public interface StudentDao {
 	public HashMap<Integer,Integer> listGrade(Student student);
 	
 	//Pay fees
-	public void payFees(Student student);
+	public void payFees(Student student,String paymentmode);
 }

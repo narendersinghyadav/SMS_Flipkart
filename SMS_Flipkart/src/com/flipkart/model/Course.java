@@ -8,13 +8,23 @@ public class Course {
 	private String courseName;
 	private String courseSchedule;
 	private int numberOfStudents;
+	private int fees;
 	
 	//Constructor
-	public Course(int courseId,String courseName,String courseSchedule,int numberofstudents) {
+	public Course(int courseId,String courseName,String courseSchedule,int numberofstudents,int fees) {
 		this.courseId=courseId;
 		this.courseName=courseName;
 		this.courseSchedule=courseSchedule;
 		this.numberOfStudents=numberofstudents;
+		this.fees=fees;
+	}
+
+	public int getFees() {
+		return fees;
+	}
+
+	public void setFees(int fees) {
+		this.fees = fees;
 	}
 
 	//Getter and Setter

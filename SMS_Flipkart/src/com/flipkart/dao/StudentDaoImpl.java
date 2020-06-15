@@ -55,25 +55,26 @@ public class StudentDaoImpl implements StudentDao,CloseDbConnection{
 			statement.setInt(5,courseid4);
 			statement.setString(6,localdate+"/"+localtime+"/"+localdatetime.getDayOfWeek());
 			int row=statement.executeUpdate();
-			if(row!=0) {
-				return true;
+			if(row==0) {
+				return false;
 			}
 			statement.close();
 
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+			return false;
 		}finally {
 			//close connection
 			closeConnection(connection);
 		}
-		return false;	
+		return true;	
 	}
 
 	//Update courses for registration
 	@Override
 	public boolean updateCourse(Student student,int courseid1,int courseid2,int courseid3,int courseid4) throws FullCourseNotification {
 
-		
+
 		LocalTime localtime=LocalTime.now();
 		LocalDate localdate=LocalDate.now();
 		LocalDateTime localdatetime=LocalDateTime.now();
@@ -106,15 +107,16 @@ public class StudentDaoImpl implements StudentDao,CloseDbConnection{
 				return false;
 			}
 			statement.close();
-			return true;
+			
 
 		}catch(SQLException e) {
 			logger.error(e.getMessage());
+			return false;
 		}finally {
 			//close connection
 			closeConnection(connection);
 		}
-		return false;
+		return true;
 
 	}
 
@@ -147,9 +149,30 @@ public class StudentDaoImpl implements StudentDao,CloseDbConnection{
 
 	//Pay fees
 	@Override
-	public void payFees(Student student) {
+	public void payFees(Student student,String paymentmode) {
 		// Payment done
+		connection=DBUtil.getConnection();
+		try {
+			//update payment
+			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.UPDATE_PAYMENT);
+			statement.setString(1,paymentmode);
+			statement.setString(2,paymentmode+" is used");
+			statement.executeUpdate();
 
+			//get payment id
+			statement=connection.prepareStatement(SQLConstantQueries.GET_PAYMENT_ID);	
+			ResultSet resultset=statement.executeQuery();
+			while(resultset.next()) {
+				int paymentid=resultset.getInt("paymentid");
+				registerComplete(paymentid,student);
+			}
+			statement.close();
+		}catch(SQLException e) {
+			logger.error(e.getMessage());
+		}finally {
+			//close connection
+			closeConnection(connection);
+		}
 	}
 
 	//View own details by student
@@ -216,5 +239,23 @@ public class StudentDaoImpl implements StudentDao,CloseDbConnection{
 		//return courses list with course id only
 		return courses;
 	}
+	//do entry in registration table
+	public void registerComplete(int paymentid,Student student) {
+		connection=DBUtil.getConnection();
 
+		try {
+			//list of selected courses
+			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.REGISTRATION_ENTRY);
+			statement.setString(1,student.getUsername());
+			statement.setInt(2,paymentid);
+			statement.setString(3, LocalDateTime.now().toString());
+			statement.executeUpdate();
+			statement.close();
+		}catch(SQLException e) {
+			logger.error(e.getMessage());
+		}finally {
+			//close connection
+			closeConnection(connection);
+		}
+	}
 }
