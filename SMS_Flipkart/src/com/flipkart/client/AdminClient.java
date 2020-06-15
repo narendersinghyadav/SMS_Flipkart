@@ -19,98 +19,98 @@ public class AdminClient {
 	private Logger logger=Logger.getLogger(AdminClient.class);
 	AdminOperation adminoperation=new AdminOperation();		
 	Scanner scanner=new Scanner(System.in);
-	//main function for  admin 
+	//main function for  admin
 	public void main() {
 
 		try {
-		int choice;
+			int choice;
 
-		do {
-			logger.info("************************");
-			logger.info("Welcome to admin portal");
-			logger.info("************************");
-			logger.info("Press 0 for adding student");
-			logger.info("Press 1 for adding professor");
-			logger.info("Press 2 for adding admin");
-			logger.info("Press 3 for update student");
-			logger.info("Press 4 for update professor");
-			logger.info("Press 5 for update admin");
-			logger.info("Press 6 for delete student");
-			logger.info("Press 7 for delete professor");
-			logger.info("Press 8 for delete admin");
-			logger.info("Press 9 to add course to catalog");
-			logger.info("Press 10 to update course in catalog");
-			logger.info("Press 11 to delete course from catalog");
-			logger.info("Press 12 to view student details");
-			logger.info("Press 13 to view Courses");
-			logger.info("Press 14 to logout");
+			do {
+				logger.info("************************");
+				logger.info("Welcome to admin portal");
+				logger.info("************************");
+				logger.info("Press 0 for adding student");
+				logger.info("Press 1 for adding professor");
+				logger.info("Press 2 for adding admin");
+				logger.info("Press 3 for update student");
+				logger.info("Press 4 for update professor");
+				logger.info("Press 5 for update admin");
+				logger.info("Press 6 for delete student");
+				logger.info("Press 7 for delete professor");
+				logger.info("Press 8 for delete admin");
+				logger.info("Press 9 to add course to catalog");
+				logger.info("Press 10 to update course in catalog");
+				logger.info("Press 11 to delete course from catalog");
+				logger.info("Press 12 to view student details");
+				logger.info("Press 13 to view Courses");
+				logger.info("Press 14 to logout");
 
-			choice=scanner.nextInt();
-			switch(choice) {
+				choice=scanner.nextInt();
+				switch(choice) {
 
-			case 0:
-				//add student
-				addStudent();
-				break;
-			case 1:
-				//Add professsor
-				addProfessor();
-				break;
-			case 2:
-				//Add admin
-				addAdmin();
-				break;
-			case 3:
-				//Update Student Info
-				updateStudent();
-				break;
-			case 4:
-				//Update Professor Info
-				updateProfessor();
-				break;
-			case 5:
-				//Update admin Info
-				updateAdmin();
-				break;
-			case 6:
-				//Delete student from database
-				deleteStudent();
-				break;
-			case 7:
-				//Delete Professor
-				deleteProfessor();
-				break;
-			case 8:
-				//Delete admin
-				deleteAdmin();
-				break;
-			case 9:
-				//Add courses to catalog
-				addCourse();
-				break;
-			case 10:
-				//Update course details
-				updateCourse();
-				break;
-			case 11:
-				//Delete course from catalog
-				deleteCourse();
-				break;
-			case 12:
-				//List all student
-				viewAllStudents();
-				break;
-			case 13:
-				//View Course
-				viewAllCourses();
-				break;
-			case 14:
-				//Admin logout
-				logger.info("admin logging out");
-				logger.info(LocalDateTime.now()+"/"+LocalDateTime.now().getDayOfWeek());
-				break;
-			}
-		}while(choice!=14);
+				case 0:
+					//add student
+					addStudent();
+					break;
+				case 1:
+					//Add professsor
+					addProfessor();
+					break;
+				case 2:
+					//Add admin
+					addAdmin();
+					break;
+				case 3:
+					//Update Student Info
+					updateStudent();
+					break;
+				case 4:
+					//Update Professor Info
+					updateProfessor();
+					break;
+				case 5:
+					//Update admin Info
+					updateAdmin();
+					break;
+				case 6:
+					//Delete student from database
+					deleteStudent();
+					break;
+				case 7:
+					//Delete Professor
+					deleteProfessor();
+					break;
+				case 8:
+					//Delete admin
+					deleteAdmin();
+					break;
+				case 9:
+					//Add courses to catalog
+					addCourse();
+					break;
+				case 10:
+					//Update course details
+					updateCourse();
+					break;
+				case 11:
+					//Delete course from catalog
+					deleteCourse();
+					break;
+				case 12:
+					//List all student
+					viewAllStudents();
+					break;
+				case 13:
+					//View Course
+					viewAllCourses();
+					break;
+				case 14:
+					//Admin logout
+					logger.info("admin logging out");
+					logger.info(LocalDateTime.now()+"/"+LocalDateTime.now().getDayOfWeek());
+					break;
+				}
+			}while(choice!=14);
 		}catch(InputMismatchException e) {
 			logger.error(e.getMessage()+" enter numerical value only");
 		}
