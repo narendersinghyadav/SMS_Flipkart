@@ -6,15 +6,15 @@ public class SQLConstantQueries {
 	public static final String LIST_BY_USERNAME="select password,role from user where username=?";
 
 	//CatalogDao queries
-	public static final String LIST_CATALOG="select * from catalog";
-	public static final String INCREMENT_NUMBER_OF_STUDENTS="update catalog set numberofStudents=numberofStudents+1 where courseid=? and numberofStudents<10";
-	public static final String DECREMENT_NUMBER_OF_STUDENTS = "update catalog set numberofStudents=numberofStudents-1 where courseid=?";
+	public static final String LIST_CATALOG="select * from courses";
+	public static final String INCREMENT_NUMBER_OF_STUDENTS="update courses set numberofStudents=numberofStudents+1 where courseid=? and numberofStudents<10";
+	public static final String DECREMENT_NUMBER_OF_STUDENTS = "update courses set numberofStudents=numberofStudents-1 where courseid=?";
 
 	//StudentDao queries
-	public static final String ADD_COURSE_BY_STUDENT="insert into course values(?,?,?,?,?,?)";
-	public static final String UPDATE_COURSE_BY_STUDENT = "update course set course1id=?,course2id=?,course3id=?,course4id=?,timestamp=? where username=?";
+	public static final String ADD_COURSE_BY_STUDENT="insert into studentcourses values(?,?,?,?,?,?)";
+	public static final String UPDATE_COURSE_BY_STUDENT = "update studentcourses set course1id=?,course2id=?,course3id=?,course4id=?,timestamp=? where username=?";
 	public static final String LIST_GRADE = "select coursegrade,courseid from grade where username=?";
-	public static final String LIST_SELECTED_COURSES="select course1id,course2id,course3id,course4id from course where username=?";
+	public static final String LIST_SELECTED_COURSES="select course1id,course2id,course3id,course4id from studentcourses where username=?";
 
 	//AdminDao sql queries
 	public static final String ADD_USER = "insert into user values(?,?,?)";
@@ -28,15 +28,15 @@ public class SQLConstantQueries {
 	public static final String ADD_ADMIN = "insert into admin values(?,?,?,?)";
 	public static final String DELETE_ADMIN = "delete from admin where username=?";
 	public static final String UPDATE_ADMIN = "update admin set name=?,address=?,mobilenumber=? where username=?";
-	public static final String ADD_COURSE_TO_DB = "insert into catalog values(?,?,?,?,?)";
-	public static final String DELETE_COURSE_TO_DB = "delete from catalog where courseid=?";
-	public static final String UPDATE_COURSE_TO_DB = "update catalog set coursename=?,courseschedule=?,numberofStudents=?,fees=? where courseid=?";
+	public static final String ADD_COURSE_TO_DB = "insert into courses values(?,?,?,?,?,?)";
+	public static final String DELETE_COURSE_TO_DB = "delete from courses where courseid=?";
+	public static final String UPDATE_COURSE_TO_DB = "update courses set coursename=?,courseschedule=?,numberofStudents=?,fees=?,catalogid=? where courseid=?";
 
 	//ProfessorDao queries
-	public static final String LIST_ENROLLED_STUDENTS = "select username,name from course natural join student where course.course1id=? or course.course2id=? or course.course3id=? or course.course4id=?";
+	public static final String LIST_ENROLLED_STUDENTS = "select username,name from studentcourses natural join student where studentcourses.course1id=? or studentcourses.course2id=? or studentcourses.course3id=? or studentcourses.course4id=?";
 	public static final String ADD_GRADE = "insert into grade values(?,?,?)";
 	public static final String CHOOSE_COURSE_FOR_TEACHING = "insert into professorcourse values(?,?)";
-	public static final String LIST_COURSES_BY_USERNAME = "select catalog.courseid,catalog.coursename,catalog.courseschedule,catalog.numberofStudents,catalog.fees from catalog natural join professorcourse where professorcourse.username=?";
+	public static final String LIST_COURSES_BY_USERNAME = "select courses.catalogid,courses.courseid,courses.coursename,courses.courseschedule,courses.numberofStudents,courses.fees from courses natural join professorcourse where professorcourse.username=?";
 	public static final String GET_STUDENT_DETAILS = "select * from student where username=?";
 	public static final String LIST_STUDENT = "select  * from student";
 

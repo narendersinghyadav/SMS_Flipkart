@@ -65,8 +65,8 @@ public class ProfessorOperation implements ProfessorInterface{
 			logger.info("You have not selected any course for teaching");
 		}
 		else {
-			logger.info(String.format("%1$10s %2$10s %3$10s %4$10s %5$10s","Course Id","Course Name","Course Schedule","Number of students","Fees"));
-			courselist.forEach(list->logger.info(String.format("%1$10s %2$10s %3$10s %4$10s %5$20s",list.getCourseId(),list.getCourseName(),list.getCourseSchedule(),list.getNumberOfStudents(),list.getFees())));
+			logger.info(String.format("%1$10s %2$10s %3$10s %4$10s %5$10s %6$10s","Course Id","Course Name","Course Schedule","Number of students","Fees","Catalogid"));
+			courselist.forEach(list->logger.info(String.format("%1$10s %2$10s %3$10s %4$10s %5$20s %6$10s",list.getCourseId(),list.getCourseName(),list.getCourseSchedule(),list.getNumberOfStudents(),list.getFees(),list.getCatalogid())));
 		}
 	}
 

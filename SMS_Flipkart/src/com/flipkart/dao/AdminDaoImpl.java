@@ -320,6 +320,7 @@ public class AdminDaoImpl implements AdminDao,CloseDbConnection{
 			statement.setString(3, course.getCourseSchedule());
 			statement.setInt(4, course.getNumberOfStudents());
 			statement.setInt(5, course.getFees());
+			statement.setInt(6, course.getCatalogid());
 			int row=statement.executeUpdate();
 			if(row==0) {
 				return false;
@@ -368,11 +369,12 @@ public class AdminDaoImpl implements AdminDao,CloseDbConnection{
 		try {
 			//Update query for updating course details like name,course schedule,number of students
 			PreparedStatement statement=connection.prepareStatement(SQLConstantQueries.UPDATE_COURSE_TO_DB);
-			statement.setInt(5, course.getCourseId());
+			statement.setInt(6, course.getCourseId());
 			statement.setString(1, course.getCourseName());
 			statement.setString(2, course.getCourseSchedule());
 			statement.setInt(3, course.getNumberOfStudents());
 			statement.setInt(4, course.getFees());
+			statement.setInt(5, course.getCatalogid());
 			int row=statement.executeUpdate();
 			if(row==0) {
 				return false;

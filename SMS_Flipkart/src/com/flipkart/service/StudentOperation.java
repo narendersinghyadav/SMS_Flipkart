@@ -22,7 +22,7 @@ public class StudentOperation implements  StudentInterface{
 	
 	//Add course during registration
 	@Override
-	public void addCourses(Student student,int courseid1, int courseid2, int courseid3, int courseid4) {
+	public boolean addCourses(Student student,int courseid1, int courseid2, int courseid3, int courseid4) {
 		
 		//Fetch course id of all courses present in catalog
 		CatalogDao coursedao=new CatalogDaoImpl();
@@ -34,6 +34,7 @@ public class StudentOperation implements  StudentInterface{
 		try {
 		if(!(courseidlist.contains(courseid1) && courseidlist.contains(courseid2) && courseidlist.contains(courseid3)&& courseidlist.contains(courseid4))){
 			logger.error("Invalid course id");
+			return false;
 		}
 		//Add course
 		else if(studentdao.addCourse(student, courseid1, courseid2, courseid3, courseid4)) {
@@ -41,11 +42,12 @@ public class StudentOperation implements  StudentInterface{
 		}
 		else {
 			logger.error("You have already choosen.If want can update");
+			return false;
 		}
 		}catch (FullCourseNotification e) {
 			e.displayMessage();
 		}
-
+		return true;
 	}
 
 	//Update courses registered by student
@@ -79,8 +81,8 @@ public class StudentOperation implements  StudentInterface{
 		//List all courses
 		CatalogDao catalog =new CatalogDaoImpl();
 		List<Course> list=catalog.getCatalog();
-		logger.info(String.format("%1$10s %2$10s %3$10s %4$10s","Course Id","Course Name","Course Schedule","Fees"));
-		list.forEach(course->logger.info(String.format("%1$10s %2$10s %3$10s %4$20s",course.getCourseId(),course.getCourseName(),course.getCourseSchedule(),course.getFees())));
+		logger.info(String.format("%1$10s %2$10s %3$10s %4$10s %5$10s","Course Id","Course Name","Course Schedule","Fees","Catalog id"));
+		list.forEach(course->logger.info(String.format("%1$10s %2$10s %3$10s %4$20s %5$10s",course.getCourseId(),course.getCourseName(),course.getCourseSchedule(),course.getFees(),course.getCatalogid())));
 
 	}
 

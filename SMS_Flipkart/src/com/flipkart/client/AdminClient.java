@@ -243,6 +243,8 @@ public class AdminClient {
 	//Add courses to catalog
 	public void addCourse() {
 		logger.info("Add course to catalog");
+		logger.info("enter catalog id");
+		int catalogid=scanner.nextInt();
 		logger.info("Enter course id ");
 		int courseid=scanner.nextInt();
 		logger.info("Enter course name");
@@ -251,12 +253,15 @@ public class AdminClient {
 		String courseschedule=scanner.next();
 		logger.info("enter fees amount");
 		int fees=scanner.nextInt();
-		adminoperation.addCourseToDb(new Course(courseid,coursename,courseschedule,0,fees));
+		
+		adminoperation.addCourseToDb(new Course(courseid,coursename,courseschedule,0,fees,catalogid));
 	}
 
 	//Update course details
 	public void updateCourse() {
 		logger.info("Update course to catalog");
+		logger.info("enter catalog id");
+		int catalogid=scanner.nextInt();
 		logger.info("Enter course id ");
 		int courseid = scanner.nextInt();
 		logger.info("Enter course name");
@@ -265,7 +270,7 @@ public class AdminClient {
 		String courseschedule = scanner.next();
 		logger.info("Enter fees amount");
 		int fees=scanner.nextInt();
-		adminoperation.updateCourseInDb(new Course(courseid,coursename,courseschedule,0,fees));
+		adminoperation.updateCourseInDb(new Course(courseid,coursename,courseschedule,0,fees,catalogid));
 	}
 
 	//Delete course from catalog
@@ -273,7 +278,7 @@ public class AdminClient {
 		logger.info("Deleteing course from catalog");
 		logger.info("Enter courseid");
 		int courseid = scanner.nextInt();
-		adminoperation.deleteCourseFromDb(new Course(courseid,"","",0,0));
+		adminoperation.deleteCourseFromDb(new Course(courseid,"","",0,0,0));
 	}
 
 	//List all student

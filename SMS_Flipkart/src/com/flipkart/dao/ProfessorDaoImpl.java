@@ -162,7 +162,7 @@ public class ProfessorDaoImpl implements ProfessorDao,CloseDbConnection{
 
 			while(resultset.next()){
 				//Retrieve course details
-				Course course =new Course(resultset.getInt("courseid"),resultset.getString("coursename"),resultset.getString("courseschedule"),resultset.getInt("numberofStudents"),resultset.getInt("fees"));
+				Course course =new Course(resultset.getInt("courseid"),resultset.getString("coursename"),resultset.getString("courseschedule"),resultset.getInt("numberofStudents"),resultset.getInt("fees"),resultset.getInt("catalogid"));
 				array.add(course);
 			}
 

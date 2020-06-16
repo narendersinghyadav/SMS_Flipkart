@@ -86,10 +86,14 @@ public class StudentClient {
 			logger.info("Enter courseid4");
 			int courseid4=scanner.nextInt();
 
-			studentoperation.addCourses(student, courseid1, courseid2, courseid3, courseid4);
+			if(studentoperation.addCourses(student, courseid1, courseid2, courseid3, courseid4)) {
 			//fees payment
 			logger.info("Fees payment started");
 			payFees(student);
+			}
+			else {
+				logger.info("Failed payment");
+			}
 			break;
 		//update courses during regisration
 		case 1:

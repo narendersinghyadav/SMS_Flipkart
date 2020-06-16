@@ -9,14 +9,24 @@ public class Course {
 	private String courseSchedule;
 	private int numberOfStudents;
 	private int fees;
+	private int catalogid;
 	
 	//Constructor
-	public Course(int courseId,String courseName,String courseSchedule,int numberofstudents,int fees) {
+	public Course(int courseId,String courseName,String courseSchedule,int numberofstudents,int fees,int catalogid) {
 		this.courseId=courseId;
 		this.courseName=courseName;
 		this.courseSchedule=courseSchedule;
 		this.numberOfStudents=numberofstudents;
 		this.fees=fees;
+		this.catalogid=catalogid;
+	}
+
+	public int getCatalogid() {
+		return catalogid;
+	}
+
+	public void setCatalogid(int catalogid) {
+		this.catalogid = catalogid;
 	}
 
 	public int getFees() {

@@ -42,7 +42,8 @@ public class CatalogDaoImpl implements CatalogDao,CloseDbConnection{
 				String courseschedule=resultset.getString("courseschedule");
 				int numberofstudents=resultset.getInt("numberofStudents");
 				int fees=resultset.getInt("fees");
-				Course course=new Course(courseid,coursename,courseschedule,numberofstudents,fees);
+				int catalogid=resultset.getInt("catalogid");
+				Course course=new Course(courseid,coursename,courseschedule,numberofstudents,fees,catalogid);
 				courselist.add(course);
 			}
 			resultset.close();
